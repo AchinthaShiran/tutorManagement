@@ -1,6 +1,12 @@
 <?php
 include "../php/config.php";
+include "../php/functions.php";
 
+
+if (!checkPermissions("TTR",3)) {
+    header("location: home.php");
+    exit; 
+}
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -12,18 +18,24 @@ if (isset($_GET['id'])) {
 }
 
 if(isset($_POST['submit'])){
-    $firstName =  $_POST['firstName'];
-    $lastName =  $_POST['lastName'];
-    $email =  $_POST['email'];
-    $phone =  $_POST['phone'];
-    $subject =  $_POST['subject'];
+    if(checkPermissions("TTR",3)){
+        $firstName =  $_POST['firstName'];
+        $lastName =  $_POST['lastName'];
+        $email =  $_POST['email'];
+        $phone =  $_POST['phone'];
+        $subject =  $_POST['subject'];
+        
+        $con = connect();
+        $query = "UPDATE Tutors SET firstName='$firstName', lastName='$lastName', email='$email', phone='$phone', subject='$subject' WHERE id=$id ";
     
-    $con = connect();
-    $query = "UPDATE Tutors SET firstName='$firstName', lastName='$lastName', email='$email', phone='$phone', subject='$subject' WHERE id=$id ";
-
-    $result = $con->query($query);
-    $con->close(); 
-    echo "<meta http-equiv='refresh' content='0'>";
+        $result = $con->query($query);
+        $con->close(); 
+        echo "<meta http-equiv='refresh' content='0'>";
+    } else {
+        header("HTTP/1.1 401 Unauthorized");
+        exit;
+    }
+   
 
 }
 
@@ -94,7 +106,7 @@ if(isset($_POST['submit'])){
                     </div>
                 </div>
 
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary">Update Tutor</button>
             </form>
 
         </div>

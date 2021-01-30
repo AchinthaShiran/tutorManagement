@@ -1,9 +1,14 @@
 <?php
 
+if (!checkPermissions("ATH", 1)) {
+    header("location: index.php");
+    exit;
+}
+
 function sideBarContent()
 {
     $role = $_SESSION["user"]["role"];
-    if (strcmp($role, "ADMIN")==0) {
+    if (strcmp($role, "ADMIN") == 0) {
         return <<<HTML
         
         <li data-toggle="collapse" data-target="#tutorsMenu" class="collapsed active">
@@ -22,9 +27,8 @@ function sideBarContent()
             <li><a href="#">View Ebooks</a></li>
         </ul>
 
-
         <li>
-            <a href="#">
+            <a href="viewUsers.php">
                 <i class="fa fa-user fa-lg"></i> Users
             </a>
         </li>
@@ -38,7 +42,7 @@ HTML;
     } else {
         return <<<HTML
         <li>
-        <a href="#">
+        <a href="viewTutors.php">
             <i class="fa fa-user fa-lg"></i> Tutors
         </a>
     </li>
@@ -48,14 +52,6 @@ HTML;
             <i class="fa fa-user fa-lg"></i> Ebooks
         </a>
     </li>
-
-
-    <li>
-        <a href="#">
-            <i class="fa fa-user fa-lg"></i> Users
-        </a>
-    </li>
-
     <li>
         <a href="#">
             <i class="fa fa-user fa-lg"></i> Profile
@@ -88,7 +84,11 @@ HTML;
                 </li>
 
                 <?php echo sideBarContent() ?>
-
+                <li>
+                    <a href="index.php">
+                        <i class="fa fa-dashboard fa-lg"></i> Logout
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

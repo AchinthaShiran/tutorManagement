@@ -1,9 +1,11 @@
 <?php
 include "../php/config.php";
+include "../php/functions.php";
 
 $con = connect();
 $query = "SELECT * FROM Tutors";
 $result = $con->query($query);
+
 
 $tutors = array();
 
@@ -15,6 +17,8 @@ $con->close();
 
 function get($tutors)
 {
+    $role = $_SESSION['user']['role'];
+
     foreach ($tutors as $tutor) {
         $name = $tutor['firstName'] . " " . $tutor['lastName'];
         $subject = $tutor['subject'];
@@ -27,10 +31,13 @@ function get($tutors)
         <td>$name</td>
         <td>$subject</td>
         <td>$email</td>
-        <td>$phone</td>
-        <td><button onclick=\"location.href = 'viewTutor.php?id=$id';\"  class=\"btn btn-default\">View</button></td>
-        </tr>
-        ";
+        <td>$phone</td>";
+
+        if (strcmp($role, "ADMIN") == 0) {
+            echo "<td><button onclick=\"location.href = 'updateTutor.php?id=$id'\"  class=\"btn btn-primary\">View</button></td>";
+        }
+
+        echo "</tr>";
     }
 }
 

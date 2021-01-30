@@ -1,27 +1,39 @@
 <?php
 include "../php/config.php";
-$error='';
+include "../php/functions.php";
+
+if (!checkPermissions("TTR",1)) {
+    header("location: home.php");
+    exit; 
+}
+
+$error = '';
 
 if (isset($_POST['submit'])) {
-    $firstName =  $_POST['firstName'];
-    $lastName =  $_POST['lastName'];
-    $email =  $_POST['email'];
-    $phone =  $_POST['phone'];
-    $subject =  $_POST['subject'];
+    if (checkPermissions("TTR", 1)) {
+        $firstName =  $_POST['firstName'];
+        $lastName =  $_POST['lastName'];
+        $email =  $_POST['email'];
+        $phone =  $_POST['phone'];
+        $subject =  $_POST['subject'];
 
-    $con = connect();
-    $query = "INSERT INTO Tutors (firstName, lastName, email,phone,subject)
-    VALUES ('$firstName', '$lastName', '$email','$phone','$subject')";
+        $con = connect();
+        $query = "INSERT INTO Tutors (firstName, lastName, email,phone,subject)
+        VALUES ('$firstName', '$lastName', '$email','$phone','$subject')";
 
 
-    $result = $con->query($query);
-    $err = $con->error;
-    if(strcmp($err,"Duplicate entry '$email' for key 'email'")==0){
-        $error = "Email Exist";
-    } else if (strcmp($err,"Duplicate entry '$phone' for key 'phone'")==0){
-        $error = "Phone Exist";
+        $result = $con->query($query);
+        $err = $con->error;
+        if (strcmp($err, "Duplicate entry '$email' for key 'email'") == 0) {
+            $error = "Email Exist";
+        } else if (strcmp($err, "Duplicate entry '$phone' for key 'phone'") == 0) {
+            $error = "Phone Exist";
+        }
+        $con->close();
+    } else {
+        header("HTTP/1.1 401 Unauthorized");
+        exit;
     }
-    $con->close();
 }
 ?>
 
@@ -45,7 +57,7 @@ if (isset($_POST['submit'])) {
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-5">
-                            <h2>Edit Tutor</h2>
+                            <h2>Add Tutor</h2>
                         </div>
                     </div>
                 </div>
@@ -53,11 +65,11 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-md-5">
                             <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" >
+                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name">
                         </div>
                         <div class="col-md-5">
                             <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name"  >
+                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name">
                         </div>
                     </div>
                 </div>
@@ -65,11 +77,11 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-md-5">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email" >
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email">
                         </div>
                         <div class="col-md-5">
                             <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" >
+                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone">
                         </div>
                     </div>
                 </div>
@@ -89,7 +101,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
 
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary">Add Tutor</button>
                 <small id="error" class="form-text text-muted"><?php echo $error ?></small>
 
             </form>

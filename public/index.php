@@ -1,6 +1,6 @@
 <?php
-
 include "../php/config.php";
+session_unset();
 
 $con = connect();
 
@@ -34,13 +34,16 @@ if (isset($_POST['submit'])) {
             $_SESSION['user']['permissions'][$row['perm_mod']][] = $row['perm_id'];
         }
     }
-    $con -> close();
+    $con->close();
+
     if ($logged)
-        header("Location: home.php");
+        if ($user['status'] == "Disabled") {
+            print_r("User disabled");
+            session_reset();
+        } else
+            header("Location: home.php");
     else
         print_r($email);
-
-    
 }
 
 ?>
