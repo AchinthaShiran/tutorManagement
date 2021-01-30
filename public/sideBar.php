@@ -1,7 +1,7 @@
 <?php
 
 if (!checkPermissions("ATH", 1)) {
-    header("location: index.php");
+    header("location: login.php");
     exit;
 }
 
@@ -26,12 +26,15 @@ function sideBarContent()
             <li class="active"><a href="#">Add Ebooks</a></li>
             <li><a href="#">View Ebooks</a></li>
         </ul>
-
-        <li>
-            <a href="viewUsers.php">
-                <i class="fa fa-user fa-lg"></i> Users
-            </a>
+        
+        <li data-toggle="collapse" data-target="#usersMenu" class="collapsed">
+            <a href="#"><i class="fa fa-globe fa-lg"></i>Users<span class="arrow"></span></a>
         </li>
+        <ul class="sub-menu collapse" id="usersMenu">
+         <li><a href="viewUsers.php">View Users </a> </li>
+            <li><a href="addUser.php">Add User</a></li>
+        </ul>
+
 
         <li>
             <a href="#">
@@ -85,7 +88,7 @@ HTML;
 
                 <?php echo sideBarContent() ?>
                 <li>
-                    <a href="index.php">
+                    <a href="login.php">
                         <i class="fa fa-dashboard fa-lg"></i> Logout
                     </a>
                 </li>
