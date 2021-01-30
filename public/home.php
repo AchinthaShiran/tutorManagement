@@ -1,3 +1,8 @@
+<?php
+include "../php/config.php";
+
+?>
+
 <html>
 
 <head lang="en">
@@ -14,7 +19,8 @@
     <div class="row">
         <?php include "sideBar.php" ?>
         <div class="col-md-10">
-            <h1>hello</h1>
+           
+        
         </div>
 
     </div>

@@ -1,5 +1,6 @@
 <?php
 include "../php/config.php";
+$error='';
 
 if (isset($_POST['submit'])) {
     $firstName =  $_POST['firstName'];
@@ -14,9 +15,12 @@ if (isset($_POST['submit'])) {
 
 
     $result = $con->query($query);
-   
-        echo $con->error;
-    
+    $err = $con->error;
+    if(strcmp($err,"Duplicate entry '$email' for key 'email'")==0){
+        $error = "Email Exist";
+    } else if (strcmp($err,"Duplicate entry '$phone' for key 'phone'")==0){
+        $error = "Phone Exist";
+    }
     $con->close();
 }
 ?>
@@ -39,28 +43,55 @@ if (isset($_POST['submit'])) {
         <div class="col-md-10">
             <form method="POST">
                 <div class="form-group">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" name="firstName" id="firstName" />
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h2>Edit Tutor</h2>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" name="lastName" id="lastName" />
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" >
+                        </div>
+                        <div class="col-md-5">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name"  >
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="subject">Subject:</label>
-                    <input type="text" name="subject" id="subject" />
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email" >
+                        </div>
+                        <div class="col-md-5">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" >
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone:</label>
-                    <input type="text" name="phone" id="phone" />
+                    <div class="col-md-5">
+                        <div class="row">
+
+                            <label for="subject">Subject</label>
+                            <select class="form-control" id="subject" name="subject">
+                                <option>Subject1</option>
+                                <option>Subject2</option>
+                                <option>Subject3</option>
+                                <option>Subject4</option>
+                                <option>Subject5</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="text" name="email" id="email" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" name="submit" id="submit" />
-                </div>
+
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                <small id="error" class="form-text text-muted"><?php echo $error ?></small>
+
             </form>
 
         </div>
