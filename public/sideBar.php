@@ -1,6 +1,78 @@
 <?php
-include "../php/config.php"
+include "../php/config.php";
+function sideBarContent()
+{
+    $role = $_SESSION["user"]["role"];
+    if (strcmp($role, "ADMIN")==0) {
+        return <<<HTML
+        
+        <li data-toggle="collapse" data-target="#tutorsMenu" class="collapsed active">
+            <a href="#"><i class="fa fa-gift fa-lg"></i><span class="arrow">Tutors</span></a>
+        </li>
+        <ul class="sub-menu collapse" id="tutorsMenu">
+            <li class="active"><a href="#">Add Tutors</a></li>
+            <li><a href="#">View Tutors</a></li>
+        </ul>
+
+        <li data-toggle="collapse" data-target="#ebooksMenu" class="collapsed">
+            <a href="#"><i class="fa fa-globe fa-lg"></i>Ebooks<span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="ebooksMenu">
+            <li class="active"><a href="#">Add Ebooks</a></li>
+            <li><a href="#">View Ebooks</a></li>
+        </ul>
+
+
+        <li>
+            <a href="#">
+                <i class="fa fa-user fa-lg"></i> Users
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa fa-user fa-lg"></i> Profile
+            </a>
+        </li>
+HTML;
+    } else {
+        return <<<HTML
+        <li>
+        <a href="#">
+            <i class="fa fa-user fa-lg"></i> Tutors
+        </a>
+    </li>
+
+    <li>
+        <a href="#">
+            <i class="fa fa-user fa-lg"></i> Ebooks
+        </a>
+    </li>
+
+
+    <li>
+        <a href="#">
+            <i class="fa fa-user fa-lg"></i> Users
+        </a>
+    </li>
+
+    <li>
+        <a href="#">
+            <i class="fa fa-user fa-lg"></i> Profile
+        </a>
+    </li>
+HTML;
+    }
+}
+
 ?>
+
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
 <div class="col-md-2">
     <div class="nav-side-menu">
         <div class="brand">Tutor Management System</div>
@@ -15,49 +87,7 @@ include "../php/config.php"
                     </a>
                 </li>
 
-                <li data-toggle="collapse" data-target="#products" class="collapsed active">
-                    <a href="#"><i class="fa fa-gift fa-lg"></i> Anlagenauswahl <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="products">
-                    <li class="active"><a href="#">RFT-H1</a></li>
-                    <li><a href="#">RFT-H2</a></li>
-                    <li><a href="#">BTB-H1</a></li>
-                    <li><a href="#">BTB-H2</a></li>
-                </ul>
-
-
-                <li data-toggle="collapse" data-target="#service" class="collapsed">
-                    <a href="#"><i class="fa fa-globe fa-lg"></i> Auswertungen <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="service">
-                    <li>Trendmonitoring</li>
-                    <li>Alarmmonitoring</li>
-                    <li>Audit-Trail</li>
-                </ul>
-
-
-                <li data-toggle="collapse" data-target="#new" class="collapsed">
-                    <a href="#"><i class="fa fa-car fa-lg"></i> Reporting <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="new">
-                    <li>Alarmstatistik</li>
-                    <li>Prozessfähigkeit</li>
-                </ul>
-
-
-                <li>
-                    <a href="#">
-                        <i class="fa fa-user fa-lg"></i> Profile
-                    </a>
-                </li>
-
-                <li data-toggle="collapse" data-target="#new" class="collapsed">
-                    <a href="#"><i class="fa fa-car fa-lg"></i> Service <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="new">
-                    <li>Sensorkonfiguration</li>
-                    <li>Betriebsarten</li>
-                </ul>
+                <?php echo sideBarContent() ?>
 
             </ul>
         </div>

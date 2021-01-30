@@ -61,9 +61,8 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <div class="container center_div">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+    <div class="container login">
+        <div class="d-flex justify-content-center">
             <div class="row align-items-center">
                 <form method="POST">
                     <div class="form-group">
@@ -85,7 +84,6 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>
         </div>
-        <div class="col-md-4"></div>
     </div>
 
 </body>
