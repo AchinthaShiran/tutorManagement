@@ -1,5 +1,5 @@
 <?php
-include "../php/config.php";
+
 function sideBarContent()
 {
     $role = $_SESSION["user"]["role"];
@@ -10,8 +10,8 @@ function sideBarContent()
             <a href="#"><i class="fa fa-gift fa-lg"></i><span class="arrow">Tutors</span></a>
         </li>
         <ul class="sub-menu collapse" id="tutorsMenu">
-            <li class="active"><a href="#">Add Tutors</a></li>
-            <li><a href="#">View Tutors</a></li>
+            <li><a href="addTutors.php">Add Tutors</a></li>
+            <li><a href="viewTutors.php">View Tutors</a></li>
         </ul>
 
         <li data-toggle="collapse" data-target="#ebooksMenu" class="collapsed">
