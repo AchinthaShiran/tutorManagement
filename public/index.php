@@ -33,17 +33,14 @@ if (isset($_POST['submit'])) {
             }
             $_SESSION['user']['permissions'][$row['perm_mod']][] = $row['perm_id'];
         }
-
-
-
-
-        //   header("Location: index.php");
     }
-
+    $con -> close();
     if ($logged)
         header("Location: home.php");
     else
         print_r($email);
+
+    
 }
 
 ?>
