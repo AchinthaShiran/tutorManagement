@@ -11,6 +11,8 @@ while ($row = $result->fetch_assoc()) {
     array_push($tutors, $row);
 }
 
+$con->close();
+
 function get($tutors)
 {
     foreach ($tutors as $tutor) {
@@ -26,7 +28,7 @@ function get($tutors)
         <td>$subject</td>
         <td>$email</td>
         <td>$phone</td>
-        <td><button onclick=\"location.href = 'viewTutor?id=$id';\"  class=\"btn btn-default\">View</button></td>
+        <td><button onclick=\"location.href = 'viewTutor.php?id=$id';\"  class=\"btn btn-default\">View</button></td>
         </tr>
         ";
     }
@@ -56,7 +58,7 @@ function get($tutors)
                         <th scope="col">Subject</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
-                        <th scope="col">View</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
