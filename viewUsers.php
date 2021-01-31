@@ -57,24 +57,30 @@ function get($users)
     <div class="row">
         <?php include "sideBar.php" ?>
         <div class="col-md-10">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Status</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php get($users) ?>
-                </tbody>
-            </table>
+            <br>
+            <h4>Browse Users</h4>
+            <br>
+            <div class="card">
+                <h5 class="card-header">sdsd</h5>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Status</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php get($users) ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-
     </div>
 </div>
 
 </html>
-

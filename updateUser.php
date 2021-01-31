@@ -40,12 +40,7 @@ if (isset($_POST['submit'])) {
         exit;
     }
 }
-function status($option, $status)
-{
-    if (strcmp($status, $option) == 0) {
-        echo "selected";
-    }
-}
+
 ?>
 
 <html>
@@ -102,9 +97,9 @@ function status($option, $status)
 
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status">
-                                <option <?php status("Active", $user['status']) ?>>Active</option>
-                                <option <?php status("Pending", $user['status']) ?>>Pending</option>
-                                <option <?php status("Disabled", $user['status']) ?>>Disabled</option>
+                                <option <?php dropDownValue("Active", $user['status']) ?>>Active</option>
+                                <option <?php dropDownValue("Pending", $user['status']) ?>>Pending</option>
+                                <option <?php dropDownValue("Disabled", $user['status']) ?>>Disabled</option>
                             </select>
                         </div>
                     </div>

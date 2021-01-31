@@ -3,7 +3,14 @@ include "php/config.php";
 include "php/functions.php";
 
 $con = connect();
-$query = $con->prepare("SELECT * FROM Tutors");
+
+$subject = '%';
+if (isset($_GET['subjectSelect'])) {
+    $subject = $_GET['subjectSelect'];
+}
+
+$query = $con->prepare("SELECT * FROM Tutors WHERE subject LIKE ?");
+$query->bind_param("s",$subject);
 $query->execute();
 $result = $query->get_result();
 
@@ -46,7 +53,7 @@ function get($tutors)
 <html>
 
 <head lang="en">
-    <title>Login</title>
+    <title>View Tutors</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
@@ -59,20 +66,50 @@ function get($tutors)
     <div class="row">
         <?php include "sideBar.php" ?>
         <div class="col-md-10">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php get($tutors) ?>
-                </tbody>
-            </table>
+            <br>
+            <h4>Browse Tutors</h4>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <div class="col-md-3">
+                        <form name="search" id="search" method="GET">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Subject : </span>
+                                </div>
+                                <select class="form-control" name="subjectSelect" id="subjectSelect" onchange="this.form.submit()">
+                                    <option value="%" <?php dropDownValue($subject, "") ?>>All</option>
+                                    <option <?php dropDownValue($subject, "Subject1") ?>>Subject1</option>
+                                    <option <?php dropDownValue($subject, "Subject2") ?>>Subject2</option>
+                                    <option <?php dropDownValue($subject, "Subject3") ?>>Subject3</option>
+                                    <option <?php dropDownValue($subject, "Subject4") ?>>Subject4</option>
+                                    <option <?php dropDownValue($subject, "Subject5") ?>>Subject5</option>
+                                </select>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                    </form>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php get($tutors) ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
     </div>
