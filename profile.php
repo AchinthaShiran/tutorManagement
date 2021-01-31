@@ -12,7 +12,7 @@ $id = $_SESSION['user']['id'];
 
 $con = connect();
 $query = $con->prepare("SELECT * FROM Users WHERE id=?");
-$query->bind_param("i",$id);
+$query->bind_param("i", $id);
 $query->execute();
 $result = $query->get_result();
 $user = $result->fetch_assoc();
@@ -34,13 +34,13 @@ if (isset($_POST['submit'])) {
             if (strlen($newPassword) > 0) {
                 if ($newPassword == $confirmPassword) {
                     $query = $con->prepare("UPDATE Users SET firstName=?, lastName=?,phone=?,password=? WHERE id=?");
-                    $query->bind_param("ssssi",$firstName,$lastName,$phone,$password,$id);
+                    $query->bind_param("ssssi", $firstName, $lastName, $phone, $password, $id);
                 } else {
                     echo "passwords do not match";
                 }
             } else {
                 $query = $con->prepare("UPDATE Users SET firstName=?, lastName=?,phone=? WHERE id=?");
-                $query->bind_param("sssi",$firstName,$lastName,$phone,$id);
+                $query->bind_param("sssi", $firstName, $lastName, $phone, $id);
             }
             $query->execute();
 
@@ -78,59 +78,61 @@ function status($option, $status)
 <div class="container-fluid sidebar">
     <div class="row">
         <?php include "sideBar.php" ?>
-        <div class="col-md-10">
-            <form method="POST">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h2>Edit Profile</h2>
-                        </div>
-                    </div>
+        <div class="col-md-9">
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Edit Profile</h5>
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" value="<?php echo $user['firstName'] ?>">
+                <div class="card-body">
+                    <form method="POST">
+                       
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" value="<?php echo $user['firstName'] ?>">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" value="<?php echo $user['lastName'] ?>">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-5">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" value="<?php echo $user['lastName'] ?>">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" value="<?php echo $user['phone'] ?>">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" value="<?php echo $user['phone'] ?>">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="firstName">New Password</label>
+                                    <input type="text" class="form-control" id="newPassword" name="newPassword" aria-describedby="newPassword" placeholder="New Password">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="lastName">Confirm Password</label>
+                                    <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" aria-describedby="confirmPassword" placeholder="Confirm Password">
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="phone">Password</label>
+                                    <input type="text" class="form-control" id="password" name="password" aria-describedby="password" placeholder="Password">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
                 </div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="firstName">New Password</label>
-                            <input type="text" class="form-control" id="newPassword" name="newPassword" aria-describedby="newPassword" placeholder="New Password">
-                        </div>
-                        <div class="col-md-5">
-                            <label for="lastName">Confirm Password</label>
-                            <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" aria-describedby="confirmPassword" placeholder="Confirm Password">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="phone">Password</label>
-                            <input type="text" class="form-control" id="password" name="password" aria-describedby="password" placeholder="Password">
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" name="submit" class="btn btn-primary">Update Profile</button>
-            </form>
-
+            </div>
         </div>
 
     </div>

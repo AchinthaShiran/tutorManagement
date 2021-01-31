@@ -15,7 +15,7 @@ if (isset($_GET['searchByStatus'])) {
 }
 
 $query = $con->prepare("SELECT * FROM Users WHERE role_id=2 AND status LIKE ?");
-$query->bind_param("s",$stts);
+$query->bind_param("s", $stts);
 $query->execute();
 $result = $query->get_result();
 
@@ -65,33 +65,36 @@ function get($users)
         <?php include "sideBar.php" ?>
         <div class="col-md-10">
             <br>
-            <h4>Browse Users</h4>
-            <br>
             <div class="card">
                 <div class="card-header">
-                    <div class="col-md-3">
-                        <form name="search" id="search" method="GET">
-                            <div class="input-group input-group-sm">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Status : </span>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h4>Browse Users</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <form name="search" id="search" method="GET">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Status : </span>
+                                    </div>
+                                    <select class="form-control" name="searchByStatus" id="searchByStatus" onchange="this.form.submit()">
+                                        <option value="%" <?php dropDownValue($stts, "") ?>>All</option>
+                                        <option <?php dropDownValue($stts, "Active") ?>>Active</option>
+                                        <option <?php dropDownValue($stts, "Pending") ?>>Pending</option>
+                                        <option <?php dropDownValue($stts, "Disabled") ?>>Disabled</option>
+                                    </select>
                                 </div>
-                                <select class="form-control" name="searchByStatus" id="searchByStatus" onchange="this.form.submit()">
-                                    <option value="%" <?php dropDownValue($stts, "") ?>>All</option>
-                                    <option <?php dropDownValue($stts, "Active") ?>>Active</option>
-                                    <option <?php dropDownValue($stts, "Pending") ?>>Pending</option>
-                                    <option <?php dropDownValue($stts, "Disabled") ?>>Disabled</option>
-                                </select>
-                            </div>
 
 
-                        </form>
+                            </form>
+                        </div>
 
                     </div>
                     </form>
                 </div>
 
-                <div class="card-body">
-                    <table class="table table-hover">
+                <div class="card-body table-responsive p-0" style="height: 600px;">
+                    <table class="table table-hover table-head-fixed text-nowrap">
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>

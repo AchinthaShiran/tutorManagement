@@ -2,13 +2,12 @@
 include "php/config.php";
 include "php/functions.php";
 
-if (!checkPermissions("TTR",3)) {
+if (!checkPermissions("TTR", 3)) {
     header("location: index.php");
-    exit; 
+    exit;
 }
 
 $error = '';
-
 if (isset($_POST['submit'])) {
     if (checkPermissions("TTR", 3)) {
         $firstName =  $_POST['firstName'];
@@ -19,7 +18,7 @@ if (isset($_POST['submit'])) {
 
         $con = connect();
         $query = $con->prepare("INSERT INTO Tutors (firstName, lastName, email,phone,subject) VALUES (?,?,?,?,?)");
-        $query->bind_param("sssss",$firstName,$lastName,$email,$phone,$subject);
+        $query->bind_param("sssss", $firstName, $lastName, $email, $phone, $subject);
         $query->execute();
         $result = $query->get_result();
         $err = $con->error;
@@ -51,60 +50,58 @@ if (isset($_POST['submit'])) {
 <div class="container-fluid sidebar">
     <div class="row">
         <?php include "sideBar.php" ?>
-        <div class="col-md-10">
-            <form method="POST">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h2>Add Tutor</h2>
-                        </div>
-                    </div>
+        <div class="col-md-9">
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Add Tutor</h4>
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name">
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" />
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-5">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <div class="row">
+
+                                    <label for="subject">Subject</label>
+                                    <select class="form-control" id="subject" name="subject">
+                                        <option>Subject1</option>
+                                        <option>Subject2</option>
+                                        <option>Subject3</option>
+                                        <option>Subject4</option>
+                                        <option>Subject5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" name="submit" class="btn btn-primary">Add Tutor</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email">
-                        </div>
-                        <div class="col-md-5">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5">
-                        <div class="row">
-
-                            <label for="subject">Subject</label>
-                            <select class="form-control" id="subject" name="subject">
-                                <option>Subject1</option>
-                                <option>Subject2</option>
-                                <option>Subject3</option>
-                                <option>Subject4</option>
-                                <option>Subject5</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" name="submit" class="btn btn-primary">Add Tutor</button>
-                <small id="error" class="form-text text-muted"><?php echo $error ?></small>
-
-            </form>
-
+            </div>
         </div>
 
     </div>

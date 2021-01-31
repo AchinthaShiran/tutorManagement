@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         $con = connect();
         $query = $con->prepare("INSERT INTO Users (firstName, lastName, email,phone,password,role_id,status)
         VALUES (?, ?, ?,?,'123123123',?,'Active')");
-        $query->bind_param("ssssi",$firstName,$lastName,$email,$phone,$role);
+        $query->bind_param("ssssi", $firstName, $lastName, $email, $phone, $role);
         $query->execute();
         $result = $query->get_result();
         $con->close();
@@ -27,12 +27,6 @@ if (isset($_POST['submit'])) {
     } else {
         header("HTTP/1.1 401 Unauthorized");
         exit;
-    }
-}
-function status($option, $status)
-{
-    if (strcmp($status, $option) == 0) {
-        echo "selected";
     }
 }
 ?>
@@ -52,62 +46,57 @@ function status($option, $status)
 <div class="container-fluid sidebar">
     <div class="row">
         <?php include "sideBar.php" ?>
-        <div class="col-md-10">
-            <form method="POST">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h2>Add user</h2>
-                        </div>
-                    </div>
+        <div class="col-md-9">
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Add User</h4>
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name">
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name"/>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-5">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email">
-                        </div>
-                        <div class="col-md-5">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5">
-                        <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <div class="row">
 
-                            <label for="role">Role</label>
-                            <select class="form-control" id="role" name="role">
-                                <option value="1">Admin</option>
-                                <option value="2">User</option>
-                            </select>
+                                    <label for="status">Role</label>
+                                    <select class="form-control" id="role" name="role">
+                                        <option value="1">Admin</option>
+                                        <option value="2">User</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <button type="submit" name="submit" class="btn btn-primary">Add User</button>
+                    </form>
                 </div>
-
-                <button type="submit" name="submit" class="btn btn-primary">Add User</button>
-            </form>
-
+            </div>
         </div>
-
     </div>
-</div>
-
-
-</div>
 </div>
 
 </html>

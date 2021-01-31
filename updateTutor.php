@@ -3,9 +3,9 @@ include "php/config.php";
 include "php/functions.php";
 
 
-if (!checkPermissions("TTR",2)) {
+if (!checkPermissions("TTR", 2)) {
     header("location: index.php");
-    exit; 
+    exit;
 }
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -17,27 +17,25 @@ if (isset($_GET['id'])) {
     $con->close();
 }
 
-if(isset($_POST['submit'])){
-    if(checkPermissions("TTR",2)){
+if (isset($_POST['submit'])) {
+    if (checkPermissions("TTR", 2)) {
         $firstName =  $_POST['firstName'];
         $lastName =  $_POST['lastName'];
         $email =  $_POST['email'];
         $phone =  $_POST['phone'];
         $subject =  $_POST['subject'];
-        
+
         $con = connect();
         $query = $con->prepare("UPDATE Tutors SET firstName=?, lastName=?, email=?, phone=?, subject=? WHERE id=?");
-        $query->bind_param("sssssi",$firstName,$lastName,$email,$phone,$subject,$id);
+        $query->bind_param("sssssi", $firstName, $lastName, $email, $phone, $subject, $id);
         $query->execute();
         $result = $query->get_result();
-        $con->close(); 
+        $con->close();
         echo "<meta http-equiv='refresh' content='0'>";
     } else {
         header("HTTP/1.1 401 Unauthorized");
         exit;
     }
-   
-
 }
 
 
@@ -58,58 +56,58 @@ if(isset($_POST['submit'])){
 <div class="container-fluid sidebar">
     <div class="row">
         <?php include "sideBar.php" ?>
-        <div class="col-md-10">
-            <form method="POST">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h2>Edit Tutor</h2>
-                        </div>
-                    </div>
+        <div class="col-md-9">
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Edit Tutor</h4>
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" value="<?php echo $tutor['firstName'] ?>">
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" value="<?php echo $tutor['firstName'] ?>">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" value="<?php echo $tutor['lastName'] ?>">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-5">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name"  value="<?php echo $tutor['lastName'] ?>">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email" value="<?php echo $tutor['email'] ?>">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" value="<?php echo $tutor['phone'] ?>">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email"  value="<?php echo $tutor['email'] ?>">
-                        </div>
-                        <div class="col-md-5">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone"  value="<?php echo $tutor['phone'] ?>">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5">
-                        <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <div class="row">
 
-                            <label for="subject">Subject</label>
-                            <select class="form-control" id="subject" name="subject">
-                                <option>Subject1</option>
-                                <option>Subject2</option>
-                                <option>Subject3</option>
-                                <option>Subject4</option>
-                                <option>Subject5</option>
-                            </select>
+                                    <label for="subject">Subject</label>
+                                    <select class="form-control" id="subject" name="subject">
+                                        <option <?php dropDownValue("Subject1", $tutor['subject']) ?>>Subject1</option>
+                                        <option <?php dropDownValue("Subject2", $tutor['subject']) ?>>Subject2</option>
+                                        <option <?php dropDownValue("Subject3", $tutor['subject']) ?>>Subject3</option>
+                                        <option <?php dropDownValue("Subject4", $tutor['subject']) ?>>Subject4</option>
+                                        <option <?php dropDownValue("Subject5", $tutor['subject']) ?>>Subject5</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <button type="submit" name="submit" class="btn btn-primary">Update Tutor</button>
+                    </form>
                 </div>
-
-                <button type="submit" name="submit" class="btn btn-primary">Update Tutor</button>
-            </form>
-
+            </div>
         </div>
 
     </div>

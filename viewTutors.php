@@ -10,7 +10,7 @@ if (isset($_GET['subjectSelect'])) {
 }
 
 $query = $con->prepare("SELECT * FROM Tutors WHERE subject LIKE ?");
-$query->bind_param("s",$subject);
+$query->bind_param("s", $subject);
 $query->execute();
 $result = $query->get_result();
 
@@ -67,34 +67,36 @@ function get($tutors)
         <?php include "sideBar.php" ?>
         <div class="col-md-10">
             <br>
-            <h4>Browse Tutors</h4>
-            <br>
             <div class="card">
                 <div class="card-header">
-                    <div class="col-md-3">
-                        <form name="search" id="search" method="GET">
-                            <div class="input-group input-group-sm">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Subject : </span>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h4>Browse Tutors</h4>
+                        </div>
+                        <div class="col-md-3 float-right">
+                            <form name="search" id="search" method="GET">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Subject : </span>
+                                    </div>
+                                    <select class="form-control" name="subjectSelect" id="subjectSelect" onchange="this.form.submit()">
+                                        <option value="%" <?php dropDownValue($subject, "") ?>>All</option>
+                                        <option <?php dropDownValue($subject, "Subject1") ?>>Subject1</option>
+                                        <option <?php dropDownValue($subject, "Subject2") ?>>Subject2</option>
+                                        <option <?php dropDownValue($subject, "Subject3") ?>>Subject3</option>
+                                        <option <?php dropDownValue($subject, "Subject4") ?>>Subject4</option>
+                                        <option <?php dropDownValue($subject, "Subject5") ?>>Subject5</option>
+                                    </select>
                                 </div>
-                                <select class="form-control" name="subjectSelect" id="subjectSelect" onchange="this.form.submit()">
-                                    <option value="%" <?php dropDownValue($subject, "") ?>>All</option>
-                                    <option <?php dropDownValue($subject, "Subject1") ?>>Subject1</option>
-                                    <option <?php dropDownValue($subject, "Subject2") ?>>Subject2</option>
-                                    <option <?php dropDownValue($subject, "Subject3") ?>>Subject3</option>
-                                    <option <?php dropDownValue($subject, "Subject4") ?>>Subject4</option>
-                                    <option <?php dropDownValue($subject, "Subject5") ?>>Subject5</option>
-                                </select>
-                            </div>
 
 
-                        </form>
-
+                            </form>
+                        </div>
                     </div>
                     </form>
                 </div>
-                <div class="card-body">
-                    <table class="table table-hover">
+                <div class="card-body table-responsive p-0" style="height: 600px;">
+                    <table class="table table-hover table-head-fixed text-nowrap">
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
