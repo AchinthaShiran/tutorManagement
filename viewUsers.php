@@ -8,7 +8,14 @@ if (!checkPermissions("USR", 4)) {
 }
 
 $con = connect();
-$query = $con->prepare("SELECT * FROM Users WHERE role_id=2");
+
+$stts = '%';
+if (isset($_GET['searchByStatus'])) {
+    $stts = $_GET['searchByStatus'];
+}
+
+$query = $con->prepare("SELECT * FROM Users WHERE role_id=2 AND status LIKE ?");
+$query->bind_param("s",$stts);
 $query->execute();
 $result = $query->get_result();
 
@@ -61,7 +68,28 @@ function get($users)
             <h4>Browse Users</h4>
             <br>
             <div class="card">
-                <h5 class="card-header">sdsd</h5>
+                <div class="card-header">
+                    <div class="col-md-3">
+                        <form name="search" id="search" method="GET">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Status : </span>
+                                </div>
+                                <select class="form-control" name="searchByStatus" id="searchByStatus" onchange="this.form.submit()">
+                                    <option value="%" <?php dropDownValue($stts, "") ?>>All</option>
+                                    <option <?php dropDownValue($stts, "Active") ?>>Active</option>
+                                    <option <?php dropDownValue($stts, "Pending") ?>>Pending</option>
+                                    <option <?php dropDownValue($stts, "Disabled") ?>>Disabled</option>
+                                </select>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                    </form>
+                </div>
+
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead>
