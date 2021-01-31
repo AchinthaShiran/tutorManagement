@@ -2,7 +2,7 @@
 include "../php/functions.php";
 include "../php/config.php";
 
-if (!checkPermissions("USR", 1)) {
+if (!checkPermissions("USR", 4)) {
     header("location: home.php");
     exit;
 }

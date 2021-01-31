@@ -2,7 +2,7 @@
 include "../php/config.php";
 include "../php/functions.php";
 
-if (!checkPermissions("TTR",1)) {
+if (!checkPermissions("TTR",3)) {
     header("location: home.php");
     exit; 
 }
@@ -10,7 +10,7 @@ if (!checkPermissions("TTR",1)) {
 $error = '';
 
 if (isset($_POST['submit'])) {
-    if (checkPermissions("TTR", 1)) {
+    if (checkPermissions("TTR", 3)) {
         $firstName =  $_POST['firstName'];
         $lastName =  $_POST['lastName'];
         $email =  $_POST['email'];

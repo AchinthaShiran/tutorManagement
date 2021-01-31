@@ -3,7 +3,7 @@ include "../php/config.php";
 include "../php/functions.php";
 
 
-if (!checkPermissions("USR", 3)) {
+if (!checkPermissions("USR", 2)) {
     header("location: home.php");
     exit;
 }
@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_POST['submit'])) {
-    if (checkPermissions("USR", 3)) {
+    if (checkPermissions("USR", 2)) {
         $firstName =  $_POST['firstName'];
         $lastName =  $_POST['lastName'];
         $email =  $_POST['email'];

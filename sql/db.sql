@@ -47,7 +47,7 @@ INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("USR",1,"Create Use
 INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("USR",2,"Update User");
 INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("USR",3,"Delete User");
 INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("USR",4,"View Users");
-INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("USR"5,"Update Profile");
+INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("USR",5,"Update Profile");
 
 INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("TTR",1,"View Tutors");
 INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("TTR",2,"Update Tutor");
