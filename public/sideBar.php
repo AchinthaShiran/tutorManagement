@@ -1,4 +1,5 @@
 <?php
+    phpinfo();
 
 if (!checkPermissions("ATH", 1)) {
     header("location: login.php");

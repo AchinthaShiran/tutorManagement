@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $logged = false;
     $email = $_POST['email'];
     $pass = $_POST['password'];
-
+    echo $email;
     $query = $con->prepare("SELECT * FROM Users WHERE email=? AND password=?");
     $query->bind_param("ss",$email,$pass);
     $query->execute();
@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
         unset($_SESSION['user']['password']);
 
         $role_id = $user['role_id'];
-        $query = $con->prepare("SELECT * FROM role_permissions WHERE role_id=?");
+        $query = $con->prepare("SELECT * FROM Role_Permissions WHERE role_id=?");
         $query->bind_param("i",$role_id);
         $query->execute();
         $res = $query->get_result();
@@ -42,14 +42,14 @@ if (isset($_POST['submit'])) {
     }
     $con->close();
 
-    if ($logged)
-        if ($user['status'] == "Disabled") {
-            print_r("User disabled");
-            session_reset();
-        } else
-            header("Location: index.php");
-    else
-        print_r($email);
+    // if ($logged)
+    //     if ($user['status'] == "Disabled") {
+    //         print_r("User disabled");
+    //         session_reset();
+    //     } else
+    //         header("Location: index.php");
+    // else
+    //     print_r($email);
 }
 
 ?>
