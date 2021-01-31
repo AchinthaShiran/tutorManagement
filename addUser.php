@@ -1,46 +1,40 @@
 <?php
-include "../php/config.php";
-include "../php/functions.php";
+include "php/config.php";
+include "php/functions.php";
 
 
-if (!checkPermissions("TTR",2)) {
+if (!checkPermissions("USR", 1)) {
     header("location: index.php");
-    exit; 
-}
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-
-    $con = connect();
-    $query = "SELECT * FROM Tutors WHERE id=$id";
-    $result = $con->query($query);
-    $tutor = $result->fetch_assoc();
-    $con->close();
+    exit;
 }
 
-if(isset($_POST['submit'])){
-    if(checkPermissions("TTR",2)){
+if (isset($_POST['submit'])) {
+    if (checkPermissions("USR", 1)) {
         $firstName =  $_POST['firstName'];
         $lastName =  $_POST['lastName'];
         $email =  $_POST['email'];
         $phone =  $_POST['phone'];
-        $subject =  $_POST['subject'];
-        
+        $role =  $_POST['role'];
+
         $con = connect();
-        $query = $con->prepare("UPDATE Tutors SET firstName=?, lastName=?, email=?, phone=?, subject=? WHERE id=?");
-        $query->bind_param("sssssi",$firstName,$lastName,$email,$phone,$subject,$id);
+        $query = $con->prepare("INSERT INTO Users (firstName, lastName, email,phone,password,role_id,status)
+        VALUES (?, ?, ?,?,'123123123',?,'Active')");
+        $query->bind_param("ssssi",$firstName,$lastName,$email,$phone,$role);
         $query->execute();
         $result = $query->get_result();
-        $con->close(); 
+        $con->close();
         echo "<meta http-equiv='refresh' content='0'>";
     } else {
         header("HTTP/1.1 401 Unauthorized");
         exit;
     }
-   
-
 }
-
-
+function status($option, $status)
+{
+    if (strcmp($status, $option) == 0) {
+        echo "selected";
+    }
+}
 ?>
 
 <html>
@@ -63,7 +57,7 @@ if(isset($_POST['submit'])){
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-5">
-                            <h2>Edit Tutor</h2>
+                            <h2>Add user</h2>
                         </div>
                     </div>
                 </div>
@@ -71,11 +65,11 @@ if(isset($_POST['submit'])){
                     <div class="row">
                         <div class="col-md-5">
                             <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" value="<?php echo $tutor['firstName'] ?>">
+                            <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name">
                         </div>
                         <div class="col-md-5">
                             <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name"  value="<?php echo $tutor['lastName'] ?>">
+                            <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name">
                         </div>
                     </div>
                 </div>
@@ -83,11 +77,11 @@ if(isset($_POST['submit'])){
                     <div class="row">
                         <div class="col-md-5">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email"  value="<?php echo $tutor['email'] ?>">
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email">
                         </div>
                         <div class="col-md-5">
                             <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone"  value="<?php echo $tutor['phone'] ?>">
+                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone">
                         </div>
                     </div>
                 </div>
@@ -95,24 +89,25 @@ if(isset($_POST['submit'])){
                     <div class="col-md-5">
                         <div class="row">
 
-                            <label for="subject">Subject</label>
-                            <select class="form-control" id="subject" name="subject">
-                                <option>Subject1</option>
-                                <option>Subject2</option>
-                                <option>Subject3</option>
-                                <option>Subject4</option>
-                                <option>Subject5</option>
+                            <label for="role">Role</label>
+                            <select class="form-control" id="role" name="role">
+                                <option value="1">Admin</option>
+                                <option value="2">User</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" name="submit" class="btn btn-primary">Update Tutor</button>
+                <button type="submit" name="submit" class="btn btn-primary">Add User</button>
             </form>
 
         </div>
 
     </div>
+</div>
+
+
+</div>
 </div>
 
 </html>

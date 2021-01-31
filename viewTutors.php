@@ -1,6 +1,6 @@
 <?php
-include "../php/config.php";
-include "../php/functions.php";
+include "php/config.php";
+include "php/functions.php";
 
 $con = connect();
 $query = $con->prepare("SELECT * FROM Tutors");

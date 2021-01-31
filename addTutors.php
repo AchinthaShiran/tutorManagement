@@ -1,6 +1,6 @@
 <?php
-include "../php/config.php";
-include "../php/functions.php";
+include "php/config.php";
+include "php/functions.php";
 
 if (!checkPermissions("TTR",3)) {
     header("location: index.php");

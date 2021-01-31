@@ -1,6 +1,6 @@
 <?php
-include "../php/functions.php";
-include "../php/config.php";
+include "php/functions.php";
+include "php/config.php";
 
 if (!checkPermissions("USR", 4)) {
     header("location: index.php");
@@ -39,7 +39,6 @@ function get($users)
         ";
     }
 }
-
 ?>
 <html>
 
