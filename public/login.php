@@ -9,14 +9,18 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
-    $query = "SELECT * FROM Users WHERE email='$email' AND password='$pass'";
-    $result = $con->query($query);
-
+    $query = $con->prepare("SELECT * FROM Users WHERE email=? AND password=?");
+    $query->bind_param("ss",$email,$pass);
+    $query->execute();
+    $result = $query->get_result();
     $res = $result->fetch_assoc();
+    
     if ($res) {
         $logged = true;
-        $query = "SELECT * FROM Users LEFT JOIN Roles USING (role_id)  WHERE email='$email' AND password='$pass'";
-        $result = $con->query($query);
+        $query = $con->prepare("SELECT * FROM Users LEFT JOIN Roles USING (role_id)  WHERE email=? AND password=?");
+        $query->bind_param("ss",$email,$pass);
+        $query->execute();
+        $result = $query->get_result();
         $user = $result->fetch_assoc();
 
         $_SESSION["user"] =  $user;
@@ -24,8 +28,10 @@ if (isset($_POST['submit'])) {
         unset($_SESSION['user']['password']);
 
         $role_id = $user['role_id'];
-        $query = "SELECT * FROM role_permissions WHERE role_id='$role_id'";
-        $res = $con->query($query);
+        $query = $con->prepare("SELECT * FROM role_permissions WHERE role_id=?");
+        $query->bind_param("i",$role_id);
+        $query->execute();
+        $res = $query->get_result();
 
         while ($row = $res->fetch_assoc()) {
             if (!isset($_SESSION["user"]["permissions"][$row["perm_mod"]])) {

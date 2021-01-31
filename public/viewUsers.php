@@ -8,8 +8,9 @@ if (!checkPermissions("USR", 1)) {
 }
 
 $con = connect();
-$query = "SELECT * FROM Users WHERE role_id=2";
-$result = $con->query($query);
+$query = $con->prepare("SELECT * FROM Users WHERE role_id=2");
+$query->execute();
+$result = $query->get_result();
 
 $users = array();
 

@@ -17,10 +17,11 @@ if (isset($_POST['submit'])) {
         $role =  $_POST['role'];
 
         $con = connect();
-        $query = "INSERT INTO Users (firstName, lastName, email,phone,password,role_id,status)
-        VALUES ('$firstName', '$lastName', '$email','$phone','123123123','$role','Active')";
-       
-       $result = $con->query($query);
+        $query = $con->prepare("INSERT INTO Users (firstName, lastName, email,phone,password,role_id,status)
+        VALUES (?, ?, ?,?,'123123123',?,'Active')");
+        $query->bind_param("ssssi",$firstName,$lastName,$email,$phone,$role);
+        $query->execute();
+        $result = $query->get_result();
         $con->close();
         echo "<meta http-equiv='refresh' content='0'>";
     } else {

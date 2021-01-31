@@ -26,9 +26,10 @@ if(isset($_POST['submit'])){
         $subject =  $_POST['subject'];
         
         $con = connect();
-        $query = "UPDATE Tutors SET firstName='$firstName', lastName='$lastName', email='$email', phone='$phone', subject='$subject' WHERE id=$id ";
-    
-        $result = $con->query($query);
+        $query = $con->prepare("UPDATE Tutors SET firstName=?, lastName=?, email=?, phone=?, subject=? WHERE id=?");
+        $query->bind_param("sssssi",$firstName,$lastName,$email,$phone,$subject,$id);
+        $query->execute();
+        $result = $query->get_result();
         $con->close(); 
         echo "<meta http-equiv='refresh' content='0'>";
     } else {

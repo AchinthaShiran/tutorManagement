@@ -37,7 +37,7 @@ function sideBarContent()
 
 
         <li>
-            <a href="#">
+            <a href="profile.php">
                 <i class="fa fa-user fa-lg"></i> Profile
             </a>
         </li>
@@ -56,7 +56,7 @@ HTML;
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="profile.php">
             <i class="fa fa-user fa-lg"></i> Profile
         </a>
     </li>

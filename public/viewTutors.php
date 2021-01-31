@@ -3,8 +3,9 @@ include "../php/config.php";
 include "../php/functions.php";
 
 $con = connect();
-$query = "SELECT * FROM Tutors";
-$result = $con->query($query);
+$query = $con->prepare("SELECT * FROM Tutors");
+$query->execute();
+$result = $query->get_result();
 
 
 $tutors = array();

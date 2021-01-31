@@ -18,11 +18,10 @@ if (isset($_POST['submit'])) {
         $subject =  $_POST['subject'];
 
         $con = connect();
-        $query = "INSERT INTO Tutors (firstName, lastName, email,phone,subject)
-        VALUES ('$firstName', '$lastName', '$email','$phone','$subject')";
-
-
-        $result = $con->query($query);
+        $query = $con->prepare("INSERT INTO Tutors (firstName, lastName, email,phone,subject) VALUES (?,?,?,?,?)");
+        $query->bind_param("sssss",$firstName,$lastName,$email,$phone,$subject);
+        $query->execute();
+        $result = $query->get_result();
         $err = $con->error;
         if (strcmp($err, "Duplicate entry '$email' for key 'email'") == 0) {
             $error = "Email Exist";
