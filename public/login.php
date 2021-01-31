@@ -42,14 +42,14 @@ if (isset($_POST['submit'])) {
     }
     $con->close();
 
-    // if ($logged)
-    //     if ($user['status'] == "Disabled") {
-    //         print_r("User disabled");
-    //         session_reset();
-    //     } else
-    //         header("Location: index.php");
-    // else
-    //     print_r($email);
+    if ($logged)
+        if ($user['status'] == "Disabled") {
+            print_r("User disabled");
+            session_reset();
+        } else
+            header("Location: index.php");
+    else
+        print_r($email);
 }
 
 ?>
