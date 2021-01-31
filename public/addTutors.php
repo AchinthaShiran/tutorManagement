@@ -3,7 +3,7 @@ include "../php/config.php";
 include "../php/functions.php";
 
 if (!checkPermissions("TTR",3)) {
-    header("location: home.php");
+    header("location: index.php");
     exit; 
 }
 

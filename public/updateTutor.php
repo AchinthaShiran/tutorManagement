@@ -4,7 +4,7 @@ include "../php/functions.php";
 
 
 if (!checkPermissions("TTR",2)) {
-    header("location: home.php");
+    header("location: index.php");
     exit; 
 }
 if (isset($_GET['id'])) {

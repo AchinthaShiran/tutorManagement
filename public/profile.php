@@ -4,7 +4,7 @@ include "../php/functions.php";
 
 
 if (!checkPermissions("USR", 5)) {
-    header("location: home.php");
+    header("location: index.php");
     exit;
 }
 

@@ -3,7 +3,7 @@ include "../php/functions.php";
 include "../php/config.php";
 
 if (!checkPermissions("USR", 4)) {
-    header("location: home.php");
+    header("location: index.php");
     exit;
 }
 

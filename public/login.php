@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
             print_r("User disabled");
             session_reset();
         } else
-            header("Location: home.php");
+            header("Location: index.php");
     else
         print_r($email);
 }
