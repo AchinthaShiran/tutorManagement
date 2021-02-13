@@ -15,11 +15,13 @@ if (isset($_POST['submit'])) {
     $folder = "ebooks/" . $fileName;
     $ebookName = $_POST['ebookName'];
     $subject = $_POST['subject'];
+    $grade = $_POST['grade'];
+    $medium = $_POST['medium'];
 
 
     $con = connect();
-    $query = $con->prepare("INSERT INTO ebooks (file_name,ebook_name,subject) VALUES (?,?,?)");
-    $query->bind_param("sss", $fileName, $ebookName,$subject);
+    $query = $con->prepare("INSERT INTO ebooks (fileName,ebookName,subject,grade,medium) VALUES (?,?,?,?,?)");
+    $query->bind_param("sssss", $fileName, $ebookName,$subject,$grade,$medium);
     $query->execute();
 
     if (move_uploaded_file($tempName, $folder)) {
@@ -74,6 +76,40 @@ if (isset($_POST['submit'])) {
                                         <option>Subject3</option>
                                         <option>Subject4</option>
                                         <option>Subject5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <label for="grade">Grade</label>
+                                    <select class="form-control" id="grade" name="grade">
+                                        <option value="Grade 1">Grade 1</option>
+                                        <option value="Grade 2">Grade 2</option>
+                                        <option value="Grade 3">Grade 3</option>
+                                        <option value="Grade 4">Grade 4</option>
+                                        <option value="Grade 5">Grade 5</option>
+                                        <option value="Grade 6">Grade 6</option>
+                                        <option value="Grade 7">Grade 7</option>
+                                        <option value="Grade 8">Grade 8</option>
+                                        <option value="Grade 9">Grade 9</option>
+                                        <option value="Grade 10">Grade 10</option>
+                                        <option value="Grade 11">Grade 11</option>
+                                        <option value="Grade 12">Grade 12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <div class="row">
+
+                                    <label for="medium">Medium</label>
+                                    <select class="form-control" id="medium" name="medium">
+                                        <option value="Sinhala">Sinhala</option>
+                                        <option value="English">English</option>
+                                        <option value="Tamil">Tamil</option>
                                     </select>
                                 </div>
                             </div>

@@ -33,14 +33,18 @@ function get($ebooks)
 
     $role = $_SESSION['user']['role'];
     foreach ($ebooks as $ebook) {
-        $bookName = $ebook['ebook_name'];
+        $bookName = $ebook['ebookName'];
         $subject = $ebook['subject'];
-        $fileName = $ebook['file_name'];
-        $bookId = $ebook['book_id'];
+        $fileName = $ebook['fileName'];
+        $bookId = $ebook['bookId'];
+        $grade = $ebook['grade'];
+        $medium = $ebook['medium'];
         echo "        
         <tr>
         <td>$bookName</td>
         <td>$subject</td>
+        <td>$grade</td>
+        <td>$medium</td>
         <td><button onclick=\"location.href = 'ebooks/$fileName'\"  class=\"btn btn-primary\">View</button></td>";
 
         if (strcmp($role, "ADMIN") == 0) {
@@ -102,8 +106,10 @@ function get($ebooks)
                 <div class="card-body table-responsive p-0" style="height: 600px;">
                         <table class="table table-hover table-head-fixed text-nowrap">
                             <colgroup>
-                                <col span="1" style="width: 45%;">
-                                <col span="1" style="width: 45%;">
+                                <col span="1" style="width: 40%;">
+                                <col span="1" style="width: 20%;">
+                                <col span="1" style="width: 15%;">
+                                <col span="1" style="width: 15%;">
                                 <col span="1" style="width: 5%;">
                                 <col span="1" style="width: 5%;">
                             </colgroup>
@@ -111,6 +117,8 @@ function get($ebooks)
                                 <tr>
                                     <th scope="col">E-Book</th>
                                     <th scope="col">Subject</th>
+                                    <th scope="col">Grade</th>
+                                    <th scope="col">Medium</th>
                                     <th scope="col"></th>
                                     <?php
                                     if (strcmp($role, "ADMIN") == 0) {
