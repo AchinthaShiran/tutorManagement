@@ -6,31 +6,6 @@ if (!checkPermissions("EBK", 1)) {
     header("location: index.php");
     exit;
 }
-
-$stts = "";
-
-if (isset($_POST['submit'])) {
-    $fileName = $_FILES["ebook"]["name"];
-    $tempName = $_FILES["ebook"]["tmp_name"];
-    $folder = "ebooks/" . $fileName;
-    $ebookName = $_POST['ebookName'];
-    $subject = $_POST['subject'];
-    $grade = $_POST['grade'];
-    $medium = $_POST['medium'];
-
-
-    $con = connect();
-    $query = $con->prepare("INSERT INTO ebooks (fileName,ebookName,subject,grade,medium) VALUES (?,?,?,?,?)");
-    $query->bind_param("sssss", $fileName, $ebookName,$subject,$grade,$medium);
-    $query->execute();
-
-    if (move_uploaded_file($tempName, $folder)) {
-        $stts = "ebook uploaded successfully";
-    } else {
-        $stts = "Failed to upload ebook";
-    }
-}
-
 ?>
 
 
@@ -56,7 +31,7 @@ if (isset($_POST['submit'])) {
                     <h4>Add E-Book</h4>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data">
+                    <form method="POST" action="php/addEbook.php" enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-5">

@@ -19,28 +19,6 @@ if (isset($_GET['id'])) {
     $user = $result->fetch_assoc();
     $con->close();
 }
-
-if (isset($_POST['submit'])) {
-    if (checkPermissions("USR", 2)) {
-        $firstName =  $_POST['firstName'];
-        $lastName =  $_POST['lastName'];
-        $email =  $_POST['email'];
-        $phone =  $_POST['phone'];
-        $status =  $_POST['status'];
-
-        $con = connect();
-        $query = $con->prepare("UPDATE Users SET firstName=?, lastName=?, email=?, phone=?, status=? WHERE id=?");
-        $query->bind_param("sssssi", $firstName, $lastName, $email, $phone, $status, $id);
-        $query->execute();
-        $result = $query->get_result();
-        $con->close();
-        echo "<meta http-equiv='refresh' content='0'>";
-    } else {
-        header("HTTP/1.1 401 Unauthorized");
-        exit;
-    }
-}
-
 ?>
 
 <html>
@@ -65,7 +43,7 @@ if (isset($_POST['submit'])) {
                     <h4>Edit user</h4>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" action="php/updateUser.php">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-5">
@@ -103,7 +81,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                             </div>
                         </div>
-
+                        <input type="hidden" id="id" name="id" value="<?php echo $id ?>" />
                         <button type="submit" name="submit" class="btn btn-primary">Update User</button>
                     </form>
                 </div>

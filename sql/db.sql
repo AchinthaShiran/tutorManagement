@@ -106,6 +106,10 @@ INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("TTR",2,"Update Tut
 INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("TTR",3,"Add Tutor");
 INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("TTR",4,"Delete Tutor");
 
+INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("EBK",1,"Add Ebook");
+INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("EBK",2,"View Ebook");
+INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("EBK",3,"Delete Ebook");
+
 INSERT INTO Permissions (perm_mod,perm_id,perm_desc) VALUES ("ATH",1,"Authenticated");
 
 
@@ -122,6 +126,12 @@ INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (1,"TTR",2);
 INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (1,"TTR",3);
 INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (1,"TTR",4);
 INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (2,"TTR",1);
+
+INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (1,"EBK",1);
+INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (1,"EBK",2);
+INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (1,"EBK",3);
+INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (2,"EBK",2);
+
 
 INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (1,"ATH",1);
 INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (2,"ATH",1);

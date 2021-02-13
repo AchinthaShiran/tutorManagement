@@ -17,7 +17,7 @@ if (isset($_GET['subjectSelect'])) {
 }
 
 $con = connect();
-$query = $con->prepare("SELECT * FROM ebooks WHERE subject LIKE ?");
+$query = $con->prepare("SELECT * FROM Ebooks WHERE subject LIKE ?");
 $query->bind_param("s", $subject);
 $query->execute();
 $result = $query->get_result();

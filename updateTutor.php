@@ -18,66 +18,6 @@ if (isset($_GET['id'])) {
 
     $con->close();
 }
-
-if (isset($_POST['submit'])) {
-    if (checkPermissions("TTR", 2)) {
-        $firstName =  $_POST['firstName'];
-        $lastName =  $_POST['lastName'];
-        $email =  $_POST['email'];
-        $phone =  $_POST['phone'];
-        $subject =  $_POST['subject'];
-        $about =  $_POST['about'];
-        $grades = $_POST['grades'];
-        $mediums = $_POST['mediums'];
-
-        $fileName = $_FILES["dp"]["name"];
-        $tempName = $_FILES["dp"]["tmp_name"];
-        $folder = "tutorDp/" . $fileName;
-
-        $con = connect();
-        $con->begin_transaction();
-
-        $query = $con->prepare("UPDATE Tutors SET firstName=?, lastName=?, email=?, phone=?,about=?,dp=?, subject=? WHERE id=?");
-        $query->bind_param("sssssssi", $firstName, $lastName, $email, $phone, $about, $fileName, $subject, $id);
-        $query->execute();
-        $result = $query->get_result();
-
-
-        $query = $con->prepare("DELETE FROM grades WHERE tutor=?");
-        $query->bind_param("i", $id);
-        $query->execute();
-        foreach ($grades as $grade) {
-            $query = $con->prepare("INSERT INTO grades (tutor,grade) VALUES (?,?)");
-            $query->bind_param("is", $id, $grade);
-            $query->execute();
-        }
-
-        $query = $con->prepare("DELETE FROM mediums WHERE tutor=?");
-        $query->bind_param("i", $id);
-        $query->execute();
-        foreach ($mediums as $medium) {
-            $query = $con->prepare("INSERT INTO mediums (tutor,medium) VALUES (?,?)");
-            $query->bind_param("is", $id, $medium);
-            $query->execute();
-        }
-
-        $con->commit();
-
-        $con->close();
-
-        if (move_uploaded_file($tempName, $folder)) {
-            $stts = "dp uploaded successfully";
-            unlink("tutorDp/" . $tutor['dp']);
-        } else {
-            $stts = "Failed to upload dp";
-        }
-
-        echo "<meta http-equiv='refresh' content='0'>";
-    } else {
-        header("HTTP/1.1 401 Unauthorized");
-        exit;
-    }
-}
 ?>
 
 <html>
@@ -102,7 +42,7 @@ if (isset($_POST['submit'])) {
                     <h4>Edit Tutor</h4>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data">
+                    <form method="POST" action="php/updateTutor.php" enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-5">
@@ -201,6 +141,8 @@ if (isset($_POST['submit'])) {
                                 </div>
                             </div>
                         </div>
+                        <input name="id" id="id" type="hidden" value="<?php echo $id ?>" />
+                        <input name="oldDp" id="oldDp" type="hidden" value="<?php echo $tutor['dp'] ?>" />
                     </form>
                 </div>
             </div>
