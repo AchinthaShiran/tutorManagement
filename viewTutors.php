@@ -2,6 +2,9 @@
 include "php/config.php";
 include "php/functions.php";
 
+$role = $_SESSION['user']['role'];
+
+
 $con = connect();
 
 $subject = '%';
@@ -40,9 +43,10 @@ function get($tutors)
         <td>$subject</td>
         <td>$email</td>
         <td>$phone</td>";
+        echo "<td><button onclick=\"location.href = 'viewTutorDetails.php?id=$id'\"  class=\"btn btn-primary\">View</button></td>";
 
         if (strcmp($role, "ADMIN") == 0) {
-            echo "<td><button onclick=\"location.href = 'updateTutor.php?id=$id'\"  class=\"btn btn-primary\">View</button></td>";
+            echo "<td><button onclick=\"location.href = 'updateTutor.php?id=$id'\"  class=\"btn btn-primary\">Edit</button></td>";
         }
 
         echo "</tr>";
@@ -97,6 +101,14 @@ function get($tutors)
                 </div>
                 <div class="card-body table-responsive p-0" style="height: 600px;">
                     <table class="table table-hover table-head-fixed text-nowrap">
+                        <colgroup>
+                            <col span="1" style="width: 40%;">
+                            <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 20%;">
+                            <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 5%;">
+                            <col span="1" style="width: 5%;">
+                        </colgroup>
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
@@ -104,6 +116,11 @@ function get($tutors)
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col"></th>
+                                <?php
+                                if (strcmp($role, "ADMIN") == 0) {
+                                    echo "<th></th>";
+                                }
+                                ?>
                             </tr>
                         </thead>
                         <tbody>
