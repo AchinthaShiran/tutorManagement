@@ -2,6 +2,10 @@
 include "php/config.php";
 include "php/functions.php";
 
+if (!checkPermissions("EBK", 2)) {
+    header("location: index.php");
+    exit;
+}
 
 
 $role = $_SESSION['user']['role'];

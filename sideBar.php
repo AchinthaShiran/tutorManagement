@@ -51,7 +51,7 @@ HTML;
     </li>
 
     <li>
-        <a href="#">
+        <a href="viewEbooks.php">
             <i class="fa fa-user fa-lg"></i> Ebooks
         </a>
     </li>

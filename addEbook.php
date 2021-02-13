@@ -2,7 +2,7 @@
 include "php/config.php";
 include "php/functions.php";
 
-if (!checkPermissions("TTR", 3)) {
+if (!checkPermissions("EBK", 1)) {
     header("location: index.php");
     exit;
 }
