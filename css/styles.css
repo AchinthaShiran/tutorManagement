@@ -4,7 +4,6 @@
 
 .login {
   margin-top: 50px;
-  width: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -31,7 +30,7 @@
   line-height: 50px;
   display: block;
   text-align: center;
-  font-size: 14px;
+  font-size: 20px;
 }
 .nav-side-menu .toggle-btn {
   display: none;
@@ -146,7 +145,7 @@
   }
   .brand {
     text-align: left !important;
-    font-size: 22px;
+    font-size: 25px;
     padding-left: 20px;
     line-height: 50px !important;
   }

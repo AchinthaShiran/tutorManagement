@@ -10,15 +10,15 @@ if (isset($_POST['submit'])) {
     $pass = $_POST['password'];
     echo $email;
     $query = $con->prepare("SELECT * FROM Users WHERE email=? AND password=?");
-    $query->bind_param("ss",$email,$pass);
+    $query->bind_param("ss", $email, $pass);
     $query->execute();
     $result = $query->get_result();
     $res = $result->fetch_assoc();
-    
+
     if ($res) {
         $logged = true;
         $query = $con->prepare("SELECT * FROM Users LEFT JOIN Roles USING (role_id)  WHERE email=? AND password=?");
-        $query->bind_param("ss",$email,$pass);
+        $query->bind_param("ss", $email, $pass);
         $query->execute();
         $result = $query->get_result();
         $user = $result->fetch_assoc();
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
         $role_id = $user['role_id'];
         $query = $con->prepare("SELECT * FROM Role_Permissions WHERE role_id=?");
-        $query->bind_param("i",$role_id);
+        $query->bind_param("i", $role_id);
         $query->execute();
         $res = $query->get_result();
 
@@ -68,8 +68,8 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div class="container login">
-        <div class="d-flex justify-content-center">
-            <div class="row align-items-center">
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="col-md-5">
                 <form method="POST">
                     <div class="form-group">
                         <h2>Login</h2>
@@ -84,11 +84,12 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="form-group">
                         <div>
-                            <button type="submit" name="submit" class="btn btn-default">Submit</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
 

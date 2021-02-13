@@ -19,14 +19,14 @@ function sideBarContent()
             <li><a href="addTutors.php">Add Tutors</a></li>
         </ul>
 
-        <!-- <li data-toggle="collapse" data-target="#ebooksMenu" class="collapsed">
+        <li data-toggle="collapse" data-target="#ebooksMenu" class="collapsed">
             <a href="#"><i class="fa fa-globe fa-lg"></i>Ebooks<span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="ebooksMenu">
-            <li class="active"><a href="#">Add Ebooks</a></li>
-            <li><a href="#">View Ebooks</a></li>
+            <li class="active"><a href="addEbook.php">Add Ebooks</a></li>
+            <li><a href="viewEbooks.php">View Ebooks</a></li>
         </ul>
-         -->
+        
         <li data-toggle="collapse" data-target="#usersMenu" class="collapsed">
             <a href="#"><i class="fa fa-users fa-lg"></i> Users<span class="arrow"></span></a>
         </li>
@@ -50,11 +50,11 @@ HTML;
         </a>
     </li>
 
-    <!-- <li>
+    <li>
         <a href="#">
             <i class="fa fa-user fa-lg"></i> Ebooks
         </a>
-    </li> -->
+    </li>
     <li>
         <a href="profile.php">
             <i class="fa fa-user fa-lg"></i> Profile
@@ -70,7 +70,7 @@ HTML;
 
 <div class="col-md-2">
     <div class="nav-side-menu">
-        <div class="brand">Tutor blah blah</div>
+        <div class="brand">Tutor Management</div>
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
         <div class="menu-list">
