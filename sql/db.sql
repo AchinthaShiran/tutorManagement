@@ -42,7 +42,9 @@ CREATE TABLE Tutors(
     email VARCHAR(100) UNIQUE,
     phone VARCHAR(12) UNIQUE,
     subject VARCHAR(25),
-   
+    about VARCHAR(500),
+    dp VARCHAR(100),
+
     PRIMARY KEY(id)
 );
 
@@ -61,6 +63,32 @@ CREATE TABLE Users (
     FOREIGN KEY (role_id) REFERENCES Roles(role_id)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE Ebooks(
+    bookId INT NOT NULL AUTO_INCREMENT,
+    fileName VARCHAR(100),
+    ebookName VARCHAR(50),
+    subject VARCHAR(20),
+    grade VARCHAR(15),
+    medium VARCHAR(15),
+    
+    PRIMARY KEY(bookId)
+);
+
+CREATE TABLE Grades(
+    tutor INT,
+    grade VARCHAR(15),
+    
+    PRIMARY KEY(tutor,grade),
+    FOREIGN KEY (tutor) REFERENCES Tutors(id)  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Mediums(
+    tutor INT,
+    medium VARCHAR(15),
+    
+    PRIMARY KEY(tutor,medium),
+    FOREIGN KEY (tutor) REFERENCES Tutors(id)  ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 
 INSERT INTO Roles (role) VALUES ("ADMIN");
