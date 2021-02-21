@@ -17,13 +17,20 @@ if (isset($_POST['submit'])) {
         $role =  $_POST['role'];
 
         $con = connect();
-        $query = $con->prepare("INSERT INTO Users (firstName, lastName, email,phone,password,role_id,status)
-        VALUES (?, ?, ?,?,'123123123',?,'Active')");
-        $query->bind_param("ssssi", $firstName, $lastName, $email, $phone, $role);
-        $query->execute();
-        $result = $query->get_result();
-        $con->close();
-        echo "<meta http-equiv='refresh' content='0'>";
+        try {
+            $query = $con->prepare("INSERT INTO Users (firstName, lastName, email,phone,password,role_id,status)
+             VALUES (?, ?, ?,?,'123123123',?,'Active')");
+            $query->bind_param("ssssi", $firstName, $lastName, $email, $phone, $role);
+            $query->execute();
+            $result = $query->get_result();
+            $con->close();
+            echo "<script>alert('Successfully Added User')</script>";
+        } catch (Exception $ex) {
+            echo "<script>alert('Failed to Add User')</script>";
+        } finally {
+            header("refresh:0;url=../viewUsers.php");
+        }
+
     } else {
         header("HTTP/1.1 401 Unauthorized");
         exit;

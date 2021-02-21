@@ -19,16 +19,20 @@ if (isset($_POST['submit'])) {
     $medium = $_POST['medium'];
 
 
-    $con = connect();
-    $query = $con->prepare("INSERT INTO Ebooks (fileName,ebookName,subject,grade,medium) VALUES (?,?,?,?,?)");
-    $query->bind_param("sssss", $fileName, $ebookName,$subject,$grade,$medium);
-    $query->execute();
+    try {
+        $con = connect();
+        $query = $con->prepare("INSERT INTO Ebooks (fileName,ebookName,subject,grade,medium) VALUES (?,?,?,?,?)");
+        $query->bind_param("sssss", $fileName, $ebookName, $subject, $grade, $medium);
+        $query->execute();
 
-    if (move_uploaded_file($tempName, $folder)) {
-        $stts = "ebook uploaded successfully";
-    } else {
-        $stts = "Failed to upload ebook";
+        if (move_uploaded_file($tempName, $folder)) {
+            echo "<script>alert('ebook uploaded successfully')</script>";
+        } else {
+            echo "<script>alert('Failed to upload ebook')</script>";
+        }
+    } catch (Exception $ex) {
+        echo "<script>alert('Failed to upload ebook')</script>";
+    } finally {
+        header("refresh:0;url=../viewEbooks.php");
     }
 }
-
-?>

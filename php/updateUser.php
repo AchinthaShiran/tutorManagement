@@ -15,19 +15,23 @@ if (isset($_POST['submit'])) {
         $email =  $_POST['email'];
         $phone =  $_POST['phone'];
         $status =  $_POST['status'];
-        $id=$_POST['id'];
+        $id = $_POST['id'];
+        try {
+            $con = connect();
+            $query = $con->prepare("UPDATE Users SET firstName=?, lastName=?, email=?, phone=?, status=? WHERE id=?");
+            $query->bind_param("sssssi", $firstName, $lastName, $email, $phone, $status, $id);
+            $query->execute();
+            $result = $query->get_result();
+            $con->close();
+            echo "<script>alert('Successfully Updated User')</script>";
+        } catch (Exception $ex) {
+            echo "<script>alert('Failed TO Update User')</script>";
+        } finally {
+            header("refresh:0;location: ../viewUsers.php");
+        }
 
-        $con = connect();
-        $query = $con->prepare("UPDATE Users SET firstName=?, lastName=?, email=?, phone=?, status=? WHERE id=?");
-        $query->bind_param("sssssi", $firstName, $lastName, $email, $phone, $status, $id);
-        $query->execute();
-        $result = $query->get_result();
-        $con->close();
-        echo "<meta http-equiv='refresh' content='0'>";
     } else {
         header("HTTP/1.1 401 Unauthorized");
         exit;
     }
 }
-
-?>
