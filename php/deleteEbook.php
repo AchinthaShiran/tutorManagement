@@ -3,7 +3,7 @@ include "config.php";
 include "functions.php";
 
 if (!checkPermissions("EBK", 3)) {
-    header("location: index.php");
+    header("HTTP/1.1 401 Unauthorized");
     exit;
 }
 

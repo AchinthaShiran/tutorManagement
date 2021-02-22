@@ -1,7 +1,7 @@
 <?php
 
 if (!checkPermissions("ATH", 1)) {
-    header("location: login.php");
+    header("HTTP/1.1 401 Unauthorized");
     exit;
 }
 

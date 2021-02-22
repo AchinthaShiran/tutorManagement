@@ -4,7 +4,7 @@ include "functions.php";
 
 
 if (!checkPermissions("USR", 1)) {
-    header("location: index.php");
+    header("HTTP/1.1 401 Unauthorized");
     exit;
 }
 

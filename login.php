@@ -7,10 +7,10 @@ $con = connect();
 if (isset($_POST['submit'])) {
     $logged = false;
     $email = $_POST['email'];
-    $pass = $_POST['password'];
-    echo $email;
+    $password = $_POST['password'];
+    $password=md5($password);
     $query = $con->prepare("SELECT * FROM Users WHERE email=? AND password=?");
-    $query->bind_param("ss", $email, $pass);
+    $query->bind_param("ss", $email, $password);
     $query->execute();
     $result = $query->get_result();
     $res = $result->fetch_assoc();
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     if ($res) {
         $logged = true;
         $query = $con->prepare("SELECT * FROM Users LEFT JOIN Roles USING (role_id)  WHERE email=? AND password=?");
-        $query->bind_param("ss", $email, $pass);
+        $query->bind_param("ss", $email, $password);
         $query->execute();
         $result = $query->get_result();
         $user = $result->fetch_assoc();
@@ -44,12 +44,12 @@ if (isset($_POST['submit'])) {
 
     if ($logged)
         if ($user['status'] == "Disabled") {
-            print_r("User disabled");
+            echo "<script>alert('User Disabled')</script>";
             session_reset();
         } else
             header("Location: index.php");
     else
-        print_r($email);
+        echo "<script>alert('Login failed')</script>";
 }
 
 ?>
@@ -84,7 +84,12 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="form-group">
                         <div>
-                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                        <a href="register.php" class="stretched-link">Create an account</a>
                         </div>
                     </div>
                 </form>

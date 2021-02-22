@@ -4,7 +4,7 @@ include "php/functions.php";
 
 
 if (!checkPermissions("TTR", 1)) {
-    header("location: index.php");
+    header("HTTP/1.1 401 Unauthorized");
     exit;
 }
 if (isset($_GET['id'])) {

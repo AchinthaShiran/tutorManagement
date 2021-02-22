@@ -3,7 +3,7 @@ include "php/functions.php";
 include "php/config.php";
 
 if (!checkPermissions("USR", 4)) {
-    header("location: index.php");
+    header("HTTP/1.1 401 Unauthorized");
     exit;
 }
 
