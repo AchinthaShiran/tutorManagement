@@ -15,12 +15,12 @@ if (isset($_POST['submit'])) {
         $email =  $_POST['email'];
         $phone =  $_POST['phone'];
         $role =  $_POST['role'];
-
+        $password = md5("123123");
         $con = connect();
         try {
             $query = $con->prepare("INSERT INTO Users (firstName, lastName, email,phone,password,role_id,status)
-             VALUES (?, ?, ?,?,'123123123',?,'Active')");
-            $query->bind_param("ssssi", $firstName, $lastName, $email, $phone, $role);
+             VALUES (?, ?, ?,?,?,?,'Active')");
+            $query->bind_param("sssssi", $firstName, $lastName, $email, $phone, $password, $role);
             $query->execute();
             $result = $query->get_result();
             $con->close();
@@ -30,7 +30,6 @@ if (isset($_POST['submit'])) {
         } finally {
             header("refresh:0;url=../viewUsers.php");
         }
-
     } else {
         header("HTTP/1.1 401 Unauthorized");
         exit;

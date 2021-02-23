@@ -12,7 +12,8 @@ if (!checkPermissions("EBK", 1)) {
 <html>
 
 <head lang="en">
-    <title>Add Tutors</title>
+    <title>Add E-Book</title>
+    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />

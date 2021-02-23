@@ -1,9 +1,10 @@
 <?php
 
 if (!checkPermissions("ATH", 1)) {
-    header("HTTP/1.1 401 Unauthorized");
+    header("refresh:0;url=login.php");
     exit;
 }
+
 
 function sideBarContent()
 {
@@ -11,7 +12,7 @@ function sideBarContent()
     if (strcmp($role, "ADMIN") == 0) {
         return <<<HTML
         
-        <li data-toggle="collapse" data-target="#tutorsMenu" class="collapsed active">
+        <li data-toggle="collapse" data-target="#tutorsMenu">
             <a href="#"><i class="fa fa-graduation-cap fa-lg"></i><span class="arrow"> Tutors</span></a>
         </li>
         <ul class="sub-menu collapse" id="tutorsMenu">
@@ -23,7 +24,7 @@ function sideBarContent()
             <a href="#"><i class="fa fa-globe fa-lg"></i>Ebooks<span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="ebooksMenu">
-            <li class="active"><a href="addEbook.php">Add Ebooks</a></li>
+            <li><a href="addEbook.php">Add Ebooks</a></li>
             <li><a href="viewEbooks.php">View Ebooks</a></li>
         </ul>
         
@@ -75,12 +76,13 @@ HTML;
 
         <div class="menu-list">
 
+
             <ul id="menu-content" class="menu-content collapse out">
-                <!-- <li>
-                    <a href="#">
+                <li>
+                    <a href="index.php">
                         <i class="fa fa-dashboard fa-lg"></i> Dashboard
                     </a>
-                </li> -->
+                </li>
 
                 <?php echo sideBarContent() ?>
                 <li>
