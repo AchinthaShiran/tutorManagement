@@ -37,7 +37,7 @@ if (!checkPermissions("EBK", 1)) {
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="ebookName">Book Name</label>
-                                    <input type="text" class="form-control" id="ebookName" name="ebookName" aria-describedby="ebookName" placeholder="E-Book Name" required/>
+                                    <input type="text" class="form-control" id="ebookName" name="ebookName" aria-describedby="ebookName" placeholder="E-Book Name" required />
                                 </div>
 
                             </div>
@@ -47,11 +47,18 @@ if (!checkPermissions("EBK", 1)) {
                                 <div class="row">
                                     <label for="subject">Subject</label>
                                     <select class="form-control" id="subject" name="subject">
-                                        <option>Subject1</option>
-                                        <option>Subject2</option>
-                                        <option>Subject3</option>
-                                        <option>Subject4</option>
-                                        <option>Subject5</option>
+                                        <option>Sinhala</option>
+                                        <option>English</option>
+                                        <option>Tamil</option>
+                                        <option>Maths</option>
+                                        <option>Science</option>
+                                        <option>History</option>
+                                        <option>Geography</option>
+                                        <option>IT</option>
+                                        <option>Health Science</option>
+                                        <option>Physics</option>
+                                        <option>Chemistry</option>
+                                        <option>Biology</option>
                                     </select>
                                 </div>
                             </div>

@@ -62,11 +62,18 @@ if (!checkPermissions("TTR", 3)) {
 
                                     <label for="subject">Subject</label>
                                     <select class="form-control" id="subject" name="subject" required>
-                                        <option>Subject1</option>
-                                        <option>Subject2</option>
-                                        <option>Subject3</option>
-                                        <option>Subject4</option>
-                                        <option>Subject5</option>
+                                        <option>Sinhala</option>
+                                        <option>English</option>
+                                        <option>Tamil</option>
+                                        <option>Maths</option>
+                                        <option>Science</option>
+                                        <option>History</option>
+                                        <option>Geography</option>
+                                        <option>IT</option>
+                                        <option>Health Science</option>
+                                        <option>Physics</option>
+                                        <option>Chemistry</option>
+                                        <option>Biology</option>
                                     </select>
                                 </div>
                             </div>

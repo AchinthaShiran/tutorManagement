@@ -74,11 +74,19 @@ if (isset($_GET['id'])) {
 
                                     <label for="subject">Subject</label>
                                     <select class="form-control" id="subject" name="subject" required>
-                                        <option <?php dropDownValue("Subject1", $tutor['subject']) ?>>Subject1</option>
-                                        <option <?php dropDownValue("Subject2", $tutor['subject']) ?>>Subject2</option>
-                                        <option <?php dropDownValue("Subject3", $tutor['subject']) ?>>Subject3</option>
-                                        <option <?php dropDownValue("Subject4", $tutor['subject']) ?>>Subject4</option>
-                                        <option <?php dropDownValue("Subject5", $tutor['subject']) ?>>Subject5</option>
+                                     
+                                        <option <?php dropDownValue("Sinhala", $tutor['subject']) ?>>Sinhala</option>
+                                        <option <?php dropDownValue("English", $tutor['subject']) ?>>English</option>
+                                        <option <?php dropDownValue("Tamil", $tutor['subject']) ?>>Tamil</option>
+                                        <option <?php dropDownValue("Maths", $tutor['subject']) ?>>Maths</option>
+                                        <option <?php dropDownValue("Science", $tutor['subject']) ?>>Science</option>
+                                        <option <?php dropDownValue("History", $tutor['subject']) ?>>History</option>
+                                        <option <?php dropDownValue("Geography", $tutor['subject']) ?>>Geography</option>
+                                        <option <?php dropDownValue("IT", $tutor['subject']) ?>>IT</option>
+                                        <option <?php dropDownValue("Health Science", $tutor['subject']) ?>>Health Science</option>
+                                        <option <?php dropDownValue("Physics", $tutor['subject']) ?>>Physics</option>
+                                        <option <?php dropDownValue("Chemistry", $tutor['subject']) ?>>Chemistry</option>
+                                        <option <?php dropDownValue("Biology", $tutor['subject']) ?>>Biology</option>
                                     </select>
                                 </div>
                             </div>

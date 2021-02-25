@@ -89,11 +89,18 @@ function get($tutors)
                                     </div>
                                     <select class="form-control" name="subjectSelect" id="subjectSelect" onchange="this.form.submit()">
                                         <option value="%" <?php dropDownValue($subject, "") ?>>All</option>
-                                        <option <?php dropDownValue($subject, "Subject1") ?>>Subject1</option>
-                                        <option <?php dropDownValue($subject, "Subject2") ?>>Subject2</option>
-                                        <option <?php dropDownValue($subject, "Subject3") ?>>Subject3</option>
-                                        <option <?php dropDownValue($subject, "Subject4") ?>>Subject4</option>
-                                        <option <?php dropDownValue($subject, "Subject5") ?>>Subject5</option>
+                                        <option <?php dropDownValue("Sinhala", $subject) ?>>Sinhala</option>
+                                        <option <?php dropDownValue("English", $subject) ?>>English</option>
+                                        <option <?php dropDownValue("Tamil", $subject) ?>>Tamil</option>
+                                        <option <?php dropDownValue("Maths", $subject) ?>>Maths</option>
+                                        <option <?php dropDownValue("Science", $subject) ?>>Science</option>
+                                        <option <?php dropDownValue("History", $subject) ?>>History</option>
+                                        <option <?php dropDownValue("Geography", $subject) ?>>Geography</option>
+                                        <option <?php dropDownValue("IT", $subject) ?>>IT</option>
+                                        <option <?php dropDownValue("Health Science", $subject) ?>>Health Science</option>
+                                        <option <?php dropDownValue("Physics", $subject) ?>>Physics</option>
+                                        <option <?php dropDownValue("Chemistry", $subject) ?>>Chemistry</option>
+                                        <option <?php dropDownValue("Biology", $subject) ?>>Biology</option>
                                     </select>
                                 </div>
 
