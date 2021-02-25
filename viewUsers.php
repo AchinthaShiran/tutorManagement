@@ -41,7 +41,8 @@ function get($users)
         <td>$email</td>
         <td>$phone</td>
         <td>$status</td>
-        <td><button onclick=\"location.href = 'updateUser.php?id=$id';\"  class=\"btn btn-primary\">View</button></td>
+        <td><button onclick=\"location.href = 'updateUser.php?id=$id';\"  class=\"btn btn-primary\">Edit</button></td>
+        <td><button onclick=\"location.href = 'php/deleteUser.php?id=$id';\"  class=\"btn btn-danger\">Delete</button></td>
         </tr>
         ";
     }
@@ -96,6 +97,14 @@ function get($users)
 
                 <div class="card-body table-responsive p-0" style="height: 600px;">
                     <table class="table table-hover table-head-fixed text-nowrap">
+                    <colgroup>
+                            <col span="1" style="width: 40%;">
+                            <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 20%;">
+                            <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 5%;">
+                            <col span="1" style="width: 5%;">
+                        </colgroup>
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
