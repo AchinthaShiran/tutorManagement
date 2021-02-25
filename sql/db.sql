@@ -53,8 +53,8 @@ CREATE TABLE Users (
     id INT NOT NULL AUTO_INCREMENT,
     lastName VARCHAR(50) NOT NULL,
     firstName VARCHAR(50),
-    email VARCHAR(100),
-    phone VARCHAR(12),
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(12) UNIQUE,
     password VARCHAR(100),
     role_id INT,
     status ENUM('Active', 'Pending', 'Disabled'),
@@ -138,25 +138,25 @@ INSERT INTO Role_Permissions (role_id,perm_mod,perm_id) VALUES (2,"ATH",1);
 
 
 
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last1","first1","teacher1@gmail.com","11111","subject1");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last2","first2","teacher2@gmail.com","111112","subject1");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last3","first3","teacher3@gmail.com","111113","subject2");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last4","first4","teacher4@gmail.com","111114","subject4");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last5","first5","teacher5@gmail.com","111115","subject1");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last6","first6","teacher6@gmail.com","111116","subject3");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last7","first7","teacher7@gmail.com","111117","subject1");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last8","first8","teacher8@gmail.com","111118","subject2");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last9","first9","teacher9@gmail.com","111119","subject1");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last10","first10","teacher10@gmail.com","111911","subject1");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last11","first11","teacher11@gmail.com","111141","subject1");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last12","first12","teacher12@gmail.com","111131","subject1");
-INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last13","first13","teacher13@gmail.com","1111123","subject1");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last1","first1","teacher1@gmail.com","11111","Sinhala");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last2","first2","teacher2@gmail.com","111112","Sinhala");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last3","first3","teacher3@gmail.com","111113","Maths");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last4","first4","teacher4@gmail.com","111114","History");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last5","first5","teacher5@gmail.com","111115","Maths");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last6","first6","teacher6@gmail.com","111116","History");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last7","first7","teacher7@gmail.com","111117","IT");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last8","first8","teacher8@gmail.com","111118","Geography");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last9","first9","teacher9@gmail.com","111119","Chemistry");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last10","first10","teacher10@gmail.com","111911","History");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last11","first11","teacher11@gmail.com","111141","Chemistry");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last12","first12","teacher12@gmail.com","111131","IT");
+INSERT INTO Tutors (lastName,firstName,email,phone,subject) VALUES ("last13","first13","teacher13@gmail.com","1111123","Chemistry");
 
 
-INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("Soap","Mactavish","admin@gmail.com","119","123",1,"Active");
-INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("Darth","Vader","user1@gmail.com","12456789","123",2,"Active");
-INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user2","user2","user2@gmail.com","1111","123",2,"Active");
-INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user3","user3","user3@gmail.com","2222","123",2,"Active");
-INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user4","user4","user4@gmail.com","3333","123",2,"Active");
-INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user5","user5","user5@gmail.com","4444","123",2,"Active");
-INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user6","user6","user6@gmail.com","5555","123",2,"Active");
+INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("Soap","Mactavish","admin@gmail.com","119","202cb962ac59075b964b07152d234b70",1,"Active");
+INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("Darth","Vader","user1@gmail.com","12456789","202cb962ac59075b964b07152d234b70",2,"Active");
+INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user2","user2","user2@gmail.com","1111","202cb962ac59075b964b07152d234b70",2,"Active");
+INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user3","user3","user3@gmail.com","2222","202cb962ac59075b964b07152d234b70",2,"Active");
+INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user4","user4","user4@gmail.com","3333","202cb962ac59075b964b07152d234b70",2,"Active");
+INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user5","user5","user5@gmail.com","4444","202cb962ac59075b964b07152d234b70",2,"Active");
+INSERT INTO Users (firstName,lastName,email,phone,password,role_id,status) VALUES("user6","user6","user6@gmail.com","5555","202cb962ac59075b964b07152d234b70",2,"Active");
