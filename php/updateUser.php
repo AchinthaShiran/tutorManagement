@@ -22,14 +22,23 @@ if (isset($_POST['submit'])) {
             $query->bind_param("sssssi", $firstName, $lastName, $email, $phone, $status, $id);
             $query->execute();
             $result = $query->get_result();
-            $con->close();
+
+            $err = $con->errno;
+            if ($con->errno) {
+                throw new Exception("Duplicate Entry");
+            }
+
+           
             echo "<script>alert('Successfully Updated User')</script>";
         } catch (Exception $ex) {
-            echo "<script>alert('Failed TO Update User')</script>";
+            if ($ex->getMessage() == "Duplicate Entry") {
+                echo "<script>alert('Email or Phone is already in use!')</script>";
+            } else
+                echo "<script>alert('Failed TO Update User')</script>";
         } finally {
+            $con->close();
             echo "<script>window.location.replace('../viewUsers.php'); </script>";
         }
-
     } else {
         header("HTTP/1.1 401 Unauthorized");
         exit;

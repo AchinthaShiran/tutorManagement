@@ -23,12 +23,23 @@ if (isset($_POST['submit'])) {
             $query->bind_param("sssssi", $firstName, $lastName, $email, $phone, $password, $role);
             $query->execute();
             $result = $query->get_result();
-            $con->close();
+
+            if ($con->errno) {
+                throw new Exception("Duplicate Entry");
+            }
+
             echo "<script>alert('Successfully Added User')</script>";
-        } catch (Exception $ex) {
-            echo "<script>alert('Failed to Add User')</script>";
-        } finally {
             echo "<script>window.location.replace('../viewUsers.php'); </script>";
+        } catch (Exception $ex) {
+
+            if ($ex->getMessage() == "Duplicate Entry") {
+                echo "<script>alert('Email or Phone is already in use!')</script>";
+            } else
+                echo "<script>alert('Failed to Add User')</script>";
+
+            echo "<script>window.location.replace('../addUser.php'); </script>";
+        } finally {
+            $con->close();
         }
     } else {
         header("HTTP/1.1 401 Unauthorized");

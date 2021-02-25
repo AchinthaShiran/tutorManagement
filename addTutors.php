@@ -36,11 +36,11 @@ if (!checkPermissions("TTR", 3)) {
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" />
+                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" required />
                                 </div>
                                 <div class="col-md-5">
                                     <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" />
+                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" required />
                                 </div>
                             </div>
                         </div>
@@ -48,11 +48,11 @@ if (!checkPermissions("TTR", 3)) {
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email" />
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email" required />
                                 </div>
                                 <div class="col-md-5">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" />
+                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" required />
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@ if (!checkPermissions("TTR", 3)) {
                                 <div class="row">
 
                                     <label for="subject">Subject</label>
-                                    <select class="form-control" id="subject" name="subject">
+                                    <select class="form-control" id="subject" name="subject" required>
                                         <option>Subject1</option>
                                         <option>Subject2</option>
                                         <option>Subject3</option>
@@ -75,7 +75,7 @@ if (!checkPermissions("TTR", 3)) {
                             <div class="col-md-10">
                                 <div class="row">
                                     <label for="grades">Grades</label>
-                                    <select multiple class="form-control" id="grades[]" name="grades[]">
+                                    <select multiple class="form-control" id="grades[]" name="grades[]" required>
                                         <option value="Grade 1">Grade 1</option>
                                         <option value="Grade 2">Grade 2</option>
                                         <option value="Grade 3">Grade 3</option>
@@ -97,7 +97,7 @@ if (!checkPermissions("TTR", 3)) {
                                 <div class="row">
 
                                     <label for="mediums">Mediums</label>
-                                    <select multiple class="form-control" id="mediums[]" name="mediums[]" size="3">
+                                    <select multiple class="form-control" id="mediums[]" name="mediums[]" size="3" required>
                                         <option value="Sinhala">Sinhala</option>
                                         <option value="English">English</option>
                                         <option value="Tamil">Tamil</option>
@@ -110,7 +110,7 @@ if (!checkPermissions("TTR", 3)) {
 
                                 <div class="col-md-10">
                                     <label for="about">About</label>
-                                    <textarea class="form-control" id="about" name="about" aria-describedby="about" placeholder="About"></textarea>
+                                    <textarea class="form-control" id="about" name="about" aria-describedby="about" placeholder="About" required></textarea>
                                 </div>
                             </div>
                         </div>

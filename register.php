@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" />
+                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" required />
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" />
+                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" required />
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Email" />
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Email" required />
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="phone">Phone</label>
-                                    <input type="phone" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" />
+                                    <input type="phone" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" required />
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" aria-describedby="password" placeholder="Password" />
+                                    <input type="password" class="form-control" id="password" name="password" aria-describedby="password" placeholder="Password" required />
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@ if (isset($_POST['submit'])) {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="confirmPassword">Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" aria-describedby="confirmPassword" placeholder="Confirm Password" />
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" aria-describedby="confirmPassword" placeholder="Confirm Password" required />
                                 </div>
                             </div>
                         </div>

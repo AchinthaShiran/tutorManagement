@@ -34,6 +34,11 @@ if (isset($_POST['submit'])) {
             $query->execute();
             $result = $query->get_result();
 
+            $err = $con->errno;
+            if ($con->errno) {
+                throw new Exception("Duplicate Entry");
+            }
+
 
             $query = $con->prepare("DELETE FROM Grades WHERE tutor=?");
             $query->bind_param("i", $id);
@@ -55,7 +60,6 @@ if (isset($_POST['submit'])) {
 
             $con->commit();
 
-            $con->close();
 
             unlink("../tutorDp/" . $oldDp);
             if (move_uploaded_file($tempName, $folder)) {
@@ -64,10 +68,13 @@ if (isset($_POST['submit'])) {
                 echo "<script>alert('Failed TO Update Tutor')</script>";
             }
         } catch (Exception $ex) {
-            echo "<script>alert('Failed TO Update Tutor')</script>";
-        }finally{
+            if ($ex->getMessage() == "Duplicate Entry") {
+                echo "<script>alert('Email or Phone is already in use!')</script>";
+            } else
+                echo "<script>alert('Failed TO Update Tutor')</script>";
+        } finally {
+            $con->close();
             echo "<script>window.location.replace('../viewTutors.php'); </script>";
-
         }
 
 

@@ -35,18 +35,12 @@ if (isset($_POST['submit'])) {
             $result = $query->get_result();
             $tutorId = $con->insert_id;
 
-            $err = $con->error;
-            if (strcmp($err, "Duplicate entry '$email' for key 'email'") == 0) {
-                echo "<script>alert('Email Exist')</script>";
-                $flag = true;
-                header("refresh:0;url=../viewTutors.php");
-                exit;
-            } else if (strcmp($err, "Duplicate entry '$phone' for key 'phone'") == 0) {
-                $flag = true;
-                echo "<script>alert('Phone Exist')</script>";
-                header("refresh:0;url=../viewTutors.php");
-                exit;
+            $err = $con->errno;
+
+            if ($con->errno) {
+                throw new Exception("Duplicate Entry");
             }
+
 
             foreach ($grades as $grade) {
                 $query = $con->prepare("INSERT INTO Grades (tutor,grade) VALUES (?,?)");
@@ -61,19 +55,23 @@ if (isset($_POST['submit'])) {
             }
             $con->commit();
 
-            if (!$flag) {
-                if (move_uploaded_file($tempName, $folder)) {
-                    echo "<script>alert('Successfully Added Tutor')</script>";
-                } else {
-                    echo "<script>alert('Failed to upload dp')</script>";
-                }
-            }
-            $con->close();
-        } catch (Exception $ex) {
-            echo "<script>alert('Failed to Add Tutor, Error Occurred')</script>";
-        } finally {
-            echo "<script>window.location.replace('../viewTutors.php'); </script>";
 
+            if (move_uploaded_file($tempName, $folder)) {
+                echo "<script>alert('Successfully Added Tutor')</script>";
+            } else {
+                echo "<script>alert('Failed to upload dp')</script>";
+            }
+            
+            echo "<script>window.location.replace('../viewTutors.php'); </script>";
+        } catch (Exception $ex) {
+            if ($ex->getMessage() == "Duplicate Entry") {
+                echo "<script>alert('Email or Phone is already in use!')</script>";
+            } else
+                echo "<script>alert('Failed to Add Tutor, Error Occurred')</script>";
+
+            echo "<script>window.location.replace('../addTutors.php'); </script>";
+        } finally {
+            $con->close();
         }
     } else {
         header("HTTP/1.1 401 Unauthorized");

@@ -36,11 +36,11 @@ if (!checkPermissions("USR", 1)) {
                                 <div class="row">
                                     <div class="col-md-5">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name"/>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" required/>
                                     </div>
                                     <div class="col-md-5">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name"/>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" required/>
                                     </div>
                                 </div>
                             </div>
@@ -48,11 +48,11 @@ if (!checkPermissions("USR", 1)) {
                                 <div class="row">
                                     <div class="col-md-5">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email"/>
+                                        <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email" required/>
                                     </div>
                                     <div class="col-md-5">
                                         <label for="phone">Phone</label>
-                                        <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone"/>
+                                        <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" required/>
                                     </div>
                                 </div>
                             </div>

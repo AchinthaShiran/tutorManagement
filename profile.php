@@ -29,6 +29,7 @@ if (isset($_POST['submit'])) {
         $newPassword = $_POST['newPassword'];
         $confirmPassword = $_POST['confirmPassword'];
 
+        $password = md5($password);
         if ($password == $user['password']) {
             $con = connect();
             $query = '';
@@ -48,8 +49,9 @@ if (isset($_POST['submit'])) {
             $result = $query->get_result();
             $con->close();
             echo "<meta http-equiv='refresh' content='0'>";
+            echo "<script>alert('Profile Updated Successfully')</script>";
         } else {
-            echo "aa";
+            echo "<script>alert('Please enter your password')</script>";
         }
     } else {
         header("HTTP/1.1 401 Unauthorized");
@@ -93,11 +95,11 @@ function status($option, $status)
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" value="<?php echo $user['firstName'] ?>">
+                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" value="<?php echo $user['firstName'] ?>" required>
                                 </div>
                                 <div class="col-md-5">
                                     <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" value="<?php echo $user['lastName'] ?>">
+                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" value="<?php echo $user['lastName'] ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +107,7 @@ function status($option, $status)
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" value="<?php echo $user['phone'] ?>">
+                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" value="<?php echo $user['phone'] ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -114,11 +116,11 @@ function status($option, $status)
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="firstName">New Password</label>
-                                    <input type="text" class="form-control" id="newPassword" name="newPassword" aria-describedby="newPassword" placeholder="New Password">
+                                    <input type="password" class="form-control" id="newPassword" name="newPassword" aria-describedby="newPassword" placeholder="New Password">
                                 </div>
                                 <div class="col-md-5">
                                     <label for="lastName">Confirm Password</label>
-                                    <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" aria-describedby="confirmPassword" placeholder="Confirm Password">
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" aria-describedby="confirmPassword" placeholder="Confirm Password">
                                 </div>
                             </div>
                         </div>
@@ -126,7 +128,7 @@ function status($option, $status)
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="phone">Password</label>
-                                    <input type="text" class="form-control" id="password" name="password" aria-describedby="password" placeholder="Password">
+                                    <input type="password" class="form-control" id="password" name="password" aria-describedby="password" placeholder="Password" required>
                                 </div>
                             </div>
                         </div>

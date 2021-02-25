@@ -24,8 +24,8 @@ function sideBarContent()
             <a href="#"><i class="fa fa-globe fa-lg"></i>Ebooks<span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="ebooksMenu">
-            <li><a href="addEbook.php">Add Ebooks</a></li>
             <li><a href="viewEbooks.php">View Ebooks</a></li>
+            <li><a href="addEbook.php">Add Ebooks</a></li>
         </ul>
         
         <li data-toggle="collapse" data-target="#usersMenu" class="collapsed">

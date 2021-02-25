@@ -49,11 +49,11 @@ if (isset($_GET['id'])) {
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" value="<?php echo $user['firstName'] ?>">
+                                    <input type="text" class="form-control" id="firstName" name="firstName" aria-describedby="firstName" placeholder="First Name" value="<?php echo $user['firstName'] ?>" required> 
                                 </div>
                                 <div class="col-md-5">
                                     <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" value="<?php echo $user['lastName'] ?>">
+                                    <input type="text" class="form-control" id="lastName" name="lastName" aria-describedby="lastName" placeholder="Last Name" value="<?php echo $user['lastName'] ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -61,11 +61,11 @@ if (isset($_GET['id'])) {
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email" value="<?php echo $user['email'] ?>">
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email" value="<?php echo $user['email'] ?>" required>
                                 </div>
                                 <div class="col-md-5">
                                     <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" value="<?php echo $user['phone'] ?>">
+                                    <input type="text" class="form-control" id="phone" name="phone" aria-describedby="phone" placeholder="Phone" value="<?php echo $user['phone'] ?>" required>
                                 </div>
                             </div>
                         </div>
