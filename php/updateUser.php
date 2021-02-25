@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
         } catch (Exception $ex) {
             echo "<script>alert('Failed TO Update User')</script>";
         } finally {
-            header("refresh:0;location: ../viewUsers.php");
+            echo "<script>window.location.replace('../viewUsers.php'); </script>";
         }
 
     } else {

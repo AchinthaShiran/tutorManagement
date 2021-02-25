@@ -72,7 +72,8 @@ if (isset($_POST['submit'])) {
         } catch (Exception $ex) {
             echo "<script>alert('Failed to Add Tutor, Error Occurred')</script>";
         } finally {
-            header("refresh:0;url=../viewTutors.php");
+            echo "<script>window.location.replace('../viewTutors.php'); </script>";
+
         }
     } else {
         header("HTTP/1.1 401 Unauthorized");

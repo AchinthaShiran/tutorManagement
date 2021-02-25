@@ -1,7 +1,7 @@
 <?php
 
 if (!checkPermissions("ATH", 1)) {
-    header("refresh:0;url=login.php");
+    echo "<script>window.location.replace('login.php'); </script>";
     exit;
 }
 

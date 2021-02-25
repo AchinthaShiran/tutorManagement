@@ -48,6 +48,9 @@ function get($tutors)
         if (strcmp($role, "ADMIN") == 0) {
             echo "<td><button onclick=\"location.href = 'updateTutor.php?id=$id'\"  class=\"btn btn-primary\">Edit</button></td>";
         }
+        if (strcmp($role, "ADMIN") == 0) {
+            echo "<td><button onclick=\"location.href = 'php/deleteTutor.php?id=$id'\"  class=\"btn btn-danger\">Delete</button></td>";
+        }
 
         echo "</tr>";
     }
@@ -118,6 +121,9 @@ function get($tutors)
                                 <th scope="col">Phone</th>
                                 <th scope="col"></th>
                                 <?php
+                                if (strcmp($role, "ADMIN") == 0) {
+                                    echo "<th></th>";
+                                }
                                 if (strcmp($role, "ADMIN") == 0) {
                                     echo "<th></th>";
                                 }

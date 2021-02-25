@@ -37,7 +37,7 @@ if (!checkPermissions("EBK", 1)) {
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="ebookName">Book Name</label>
-                                    <input type="text" class="form-control" id="ebookName" name="ebookName" aria-describedby="ebookName" placeholder="E-Book Name" />
+                                    <input type="text" class="form-control" id="ebookName" name="ebookName" aria-describedby="ebookName" placeholder="E-Book Name" required/>
                                 </div>
 
                             </div>
@@ -93,7 +93,7 @@ if (!checkPermissions("EBK", 1)) {
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <input type="file" id="ebook" name="ebook" aria-describedby="ebook" />
+                                    <input type="file" id="ebook" name="ebook" aria-describedby="ebook" required />
                                 </div>
 
                             </div>

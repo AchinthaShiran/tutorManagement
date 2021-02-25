@@ -33,6 +33,6 @@ if (isset($_POST['submit'])) {
     } catch (Exception $ex) {
         echo "<script>alert('Failed to upload ebook')</script>";
     } finally {
-        header("refresh:0;url=../viewEbooks.php");
+        echo "<script>window.location.replace('../viewEbooks.php'); </script>";
     }
 }

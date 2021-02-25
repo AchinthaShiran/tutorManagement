@@ -25,7 +25,7 @@ include "php/functions.php";
             <div class="row">
                 <div class="col-md-12">
                     <div class="jumbotron">
-                        <h1 style="font-weight: 700; " class="display-4">Start Your Lessons This Week!</h1>
+                        <h1 style="font-weight: 700; " class="display-4">Start Your Lessons Today! </h1>
                         <p style="font-weight: 500; " class="lead">Discover a new way of learning!!</p>
                         <hr class="my-4">
                         <div class="row">
@@ -34,7 +34,7 @@ include "php/functions.php";
                                     <img class="card-img-top" src="images/1.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h6 class="card-text">Select your subjects</h6>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <p class="card-text">Maths, science, English, History, and 8 other subjects. Help with homework, better understand, prepare for an exam.</p>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@ include "php/functions.php";
                                     <img class="card-img-top" src="images/2.png" alt="Card image cap">
                                     <div class="card-body">
                                         <h6 class="card-text">Select your weekly date and time</h6>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <p class="card-text">You are free to choose your own time slot.</p>
                                     </div>
                                 </div>
                             </div>
@@ -53,8 +53,8 @@ include "php/functions.php";
                                 <div class="card" style="width: 18rem;">
                                     <img class="card-img-top" src="images/3.jpg" alt="Card image cap">
                                     <div class="card-body">
-                                        <h6 class="card-text">Manage everything online</h6>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <h6 class="card-text">Manage your lessons online</h6>
+                                        <p class="card-text">Differentiate your classroom and engage every student</p>
                                     </div>
                                 </div>
                             </div>

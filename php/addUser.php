@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
         } catch (Exception $ex) {
             echo "<script>alert('Failed to Add User')</script>";
         } finally {
-            header("refresh:0;url=../viewUsers.php");
+            echo "<script>window.location.replace('../viewUsers.php'); </script>";
         }
     } else {
         header("HTTP/1.1 401 Unauthorized");
