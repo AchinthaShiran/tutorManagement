@@ -12,9 +12,9 @@ if (isset($_GET['file_name']) && isset($_GET['book_id'])) {
     $id = $_GET['book_id'];
 
     try {
-        if (unlink("../Ebooks/" . $fileName)) {
+        if (unlink("../ebooks/" . $fileName)) {
             $con = connect();
-            $query = $con->prepare("DELETE FROM ebooks WHERE bookId=?");
+            $query = $con->prepare("DELETE FROM Ebooks WHERE bookId=?");
             $query->bind_param("s", $id);
             $query->execute();
             $result = $query->get_result();
@@ -25,6 +25,7 @@ if (isset($_GET['file_name']) && isset($_GET['book_id'])) {
     } catch (Exception $ex) {
         echo "<script>alert('Failed to Delete Ebook')</script>";
     } finally {
+        $con->close();
         echo "<script>window.location.replace('../viewEbooks.php'); </script>";
 
     }

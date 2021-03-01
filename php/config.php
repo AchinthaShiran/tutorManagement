@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(E_ERROR | E_PARSE);
 
 function connect()
 {
@@ -13,7 +14,7 @@ function connect()
 
     // Check connection
     if (!$con) {
-        die("Connection failed: " . mysqli_connect_error());
+        die("Error Occurred");  
     }
 
     return $con;
