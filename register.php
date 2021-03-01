@@ -16,17 +16,35 @@ if (isset($_POST['submit'])) {
     } else {
         try {
             $con = connect();
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception("Invalid Email");
+            }
+
             $password = md5($password);
             $query = $con->prepare("INSERT INTO Users (firstName, lastName, email,phone,password,role_id,status) VALUES (?,?,?,?,?,2,'Active')");
             $query->bind_param("sssss", $firstName, $lastName, $email, $phone, $password);
             $query->execute();
             $result = $query->get_result();
-            $con->close();
+
+            $err = $con->errno;
+
+            if ($con->errno) {
+                throw new Exception("Duplicate Entry");
+            }
+
+
             echo "<script>alert('Successfully Registered')</script>";
         } catch (Exception $ex) {
-            echo "<script>alert('Failed to Register')</script>";
+            if ($ex->getMessage() == "Duplicate Entry") {
+                echo "<script>alert('Email or Phone is already in use!')</script>";
+            } else if ($ex->getMessage() == "Invalid Email") {
+                echo "<script>alert('Invalid Email!')</script>";
+            } else
+                echo "<script>alert('Failed to Register')</script>";
         } finally {
-            header("refresh:0;url=login.php");
+            $con->close();
+            echo "<script>window.location.replace('login.php'); </script>";
         }
     }
 }

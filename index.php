@@ -8,7 +8,7 @@ include "php/functions.php";
 
 <head lang="en">
     <title>Home</title>
-    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
+    <link rel="icon" href="images/icon.png" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
@@ -21,13 +21,14 @@ include "php/functions.php";
     <div class="row">
         <?php include "sideBar.php" ?>
         <div class="col-md-10">
-            <br />
-            <div class="row">
+                <div class="row">
                 <div class="col-md-12">
                     <div class="jumbotron">
                         <h1 style="font-weight: 700; " class="display-4">Start Your Lessons Today! </h1>
                         <p style="font-weight: 500; " class="lead">Discover a new way of learning!!</p>
                         <hr class="my-4">
+                        <br/>
+                        <br/>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="card" style="width: 18rem;">

@@ -71,7 +71,7 @@ HTML;
 
 <div class="col-md-2">
     <div class="nav-side-menu">
-        <div class="brand">Tutor Management</div>
+        <div class="brand">Tutors For You</div>
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
         <div class="menu-list">
@@ -80,7 +80,7 @@ HTML;
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
                     <a href="index.php">
-                        <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                        <i class="fa fa-home fa-lg"></i> Home
                     </a>
                 </li>
 

@@ -21,7 +21,7 @@ $query = $con->prepare("SELECT * FROM Ebooks WHERE subject LIKE ?");
 $query->bind_param("s", $subject);
 $query->execute();
 $result = $query->get_result();
-
+$con->close();
 $ebooks = array();
 
 while ($row = $result->fetch_assoc()) {
